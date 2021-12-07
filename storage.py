@@ -11,11 +11,8 @@ def setup():
     '''
     conn = sqlite3.connect('tmap.db')
     c = conn.cursor()
-
     c.execute("DROP TABLE IF EXISTS user")
-
     c.execute("CREATE TABLE user (id VARCHAR PRIMARY KEY, password TEXT)")
-
     conn.commit()
     conn.close()
     '''
