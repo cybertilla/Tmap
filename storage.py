@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
+import config
 #import relevant stuff
 
 def setup():
+
+    my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
+    trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
+    trending_now = trend_world.json()
     '''
     The database is used only for authentication
     '''
