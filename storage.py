@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
+import config
 #import relevant stuff
 
+my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
+trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
+trending_now = trend_world.json()
+
 def setup():
+
+    
     '''
     The database is used only for authentication
     '''
@@ -25,6 +32,8 @@ def display_map():
     return map
 
 def display_town(coordinates):
+    
+
     '''
     Centers map on specifi town, calls Twitter API for hashtag data
     Returns JSON object??
