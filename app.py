@@ -5,7 +5,8 @@ import storage as storage
 #import relevant objects
 
 app = Flask(__name__)
-storage.setup()   # Det här nollställer databasen inför varje körning
+storage.setup()  
+ # Det här nollställer databasen inför varje körning
 
 # Jag har låtit varje enskild metod- och URL-kombination få en egen funktion.
 # Det går lika bra att köra två funktioner (en för / och en för /id) och bara
