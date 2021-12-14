@@ -50,23 +50,28 @@ resource_url = resource_url.json()
 
 #print(resource_url)
 
-likes = 0
-list2 = []
-for res in resource_url['statuses']:
-    
-    for r in res['text']:
 
-        if(res['favorite_count'] > likes):
 
-            list2.clear()
-            likes = res['favorite_count']
-            #print("innan: ", likes)
-            
-            list2.append(res['text'])
-            list2.append(res['favorite_count'])
-            
-            
-            
-#print(list2)
+def getTextToTranslate():
+
+    likes = 0
+    list2 = []
+    text = " "
+    for res in resource_url['statuses']:
+        
+        for r in res['text']:
+
+            if(res['favorite_count'] > likes):
+
+                list2.clear()
+                likes = res['favorite_count']
+                #print("innan: ", likes)
+                text = res['text']
+                list2.append(res['text'])
+                list2.append(res['favorite_count'])
+                
+    return text            
+                
+    #print(list2)
 
 
