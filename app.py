@@ -2,6 +2,7 @@
 
 from flask import Flask, jsonify, request, url_for, render_template
 import storage as storage
+import config
 #import relevant objects
 
 app = Flask(__name__)
@@ -26,7 +27,11 @@ def display_map():
     '''
     At this endpoint we show the full world map via Google maps
     '''
-    return render_template("index.tpl")
+    key = config.MapsAPIKey
+    lat = 51.508742
+    long = -0.120850
+
+    return render_template("index.tpl", key=key, lat=lat, long=long)
 
 
 @app.route("/apidocs/", methods=['GET'])
