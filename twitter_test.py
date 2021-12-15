@@ -1,4 +1,5 @@
 import requests
+from requests.models import to_native_string
 import config
 import json
 
@@ -73,5 +74,7 @@ def getTextToTranslate():
     return text            
                 
     #print(list2)
+test = getTextToTranslate()
+print(test)
 
 
