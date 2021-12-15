@@ -1,6 +1,7 @@
 import requests
 import config
 import json
+import re
 
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
@@ -52,11 +53,13 @@ resource_url = resource_url.json()
 
 
 
+
 def getTextToTranslate():
 
     likes = 0
     list2 = []
     text = " "
+
     for res in resource_url['statuses']:
         
         for r in res['text']:
@@ -67,11 +70,24 @@ def getTextToTranslate():
                 likes = res['favorite_count']
                 #print("innan: ", likes)
                 text = res['text']
+                print(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
                 list2.append(res['text'])
+                list2.append(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
                 list2.append(res['favorite_count'])
+                #print(list2)
                 
     return text            
-                
-    #print(list2)
+
+
+#text = getTextToTranslate()
+#print(text)
+
+
+
+
+
+
+
+
 
 
