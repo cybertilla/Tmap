@@ -12,14 +12,15 @@ trending_now = trend_world.json()
 def getCountry(name):
     for trend in trending_now:
         
-        if(trend['name'] == str(name)): # we switch this to a paramiter från the user input
+        if(trend['name'] == 'Japan'): # we switch this to a paramiter från the user input
             woeid = trend['woeid']
 
         #print(trend['name'], trend['country'], trend['woeid'])
 
     trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
+    return trend_place
 
-    return getTheTrendingTweets(trend_place)
+    
 
 #plocka ut name, url, välja ut det som har mest tweet volume.
 
@@ -72,13 +73,8 @@ def getTextToTranslate(list1):
                 likes = res['favorite_count']
                 #print("innan: ", likes)
                 text = res['text']
-                print(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
+                #print(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
                 list2.append(res['text'])
                 list2.append(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
                 list2.append(res['favorite_count'])
                 #print(list2)
-
-
-
-test = getCountry('japan')
-print(test)
