@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-
+import requests
 import sqlite3
 import config
+import twitterApi
 #import relevant stuff
 
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
@@ -31,9 +32,10 @@ def display_map():
     #Get request to Google Map API
     return map
 
-def display_town(coordinates):
+def display_country(name):
+    print("från display_country: " + name)
     
-
+    twitterApi.getCountry(name)
     '''
     Centers map on specifi town, calls Twitter API for hashtag data
     Returns JSON object??

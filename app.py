@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import re
 from flask import Flask, jsonify, request, url_for, render_template
 import storage as storage
+import json
 #import relevant objects
 
 app = Flask(__name__)
@@ -22,13 +24,24 @@ storage.setup()
 #    elif request.method == 'POST':
 #        pass
 
-@app.route("/", methods=['GET'])
+@app.route("/places", methods=['GET'])
 def display_map():
     '''
     At this endpoint we show the full world map via Google maps
     '''
     return render_template("index.tpl")
 
+
+@app.route("/places/<name>", methods=['GET'])
+def display_map1(name):
+    print("från route: " + name)
+    text = storage.display_country(name)
+    y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
+    return y
+    '''
+    At this endpoint we show the full world map via Google maps
+    '''
+    
 
 @app.route("/apidocs/", methods=['GET'])
 def swagger():
