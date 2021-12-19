@@ -33,7 +33,7 @@ def display_map():
 
 
 @app.route('/places/<name>', methods=['GET'])
-def display_map1(name):
+def display_location(name):
     #print("from display_country: " + name)
     print(name)
     for trend in trending_now:
@@ -113,7 +113,7 @@ def display_map1(name):
     
     
 
-@app.route("/apidocs/", methods=['GET'])
+@app.route("/apidocs", methods=['GET'])
 def swagger():
     '''
     shows documentation for the apidocs

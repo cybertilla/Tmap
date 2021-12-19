@@ -100,8 +100,7 @@ def display_country(name):
 '''
 Centers map on specifi town, calls Twitter API for hashtag data
 Returns JSON object??
->>>>>>> 7cbbacd92f0e10c6b4d9d3e71207779b57a8b648
-    '''
+'''
 
 def add_town(coordinates):
     '''
