@@ -6,36 +6,22 @@ from flask import Flask, jsonify, request, url_for, render_template
 import storage as storage
 import json
 import config
-#import relevant objects
+
 
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
 trending_now = trend_world.json()
 
 app = Flask(__name__)
-storage.setup()  
- # Det här nollställer databasen inför varje körning
-
-# Jag har låtit varje enskild metod- och URL-kombination få en egen funktion.
-# Det går lika bra att köra två funktioner (en för / och en för /id) och bara
-# titta efter vilket verb som användes vid anropet. Hur dessa definieras finns
-# dokumenterat på
-# https://flask.palletsprojects.com/en/2.0.x/api/url-route-registrations
-
-# Den alternativa lösningen som beskrivs ovan
-#@app.route("/<int: id>", methods=['GET', 'POST'])
-#def handle_unicorn(id: int):
-#    if request.method == 'GET':
-#        pass
-#    elif request.method == 'POST':
-#        pass
+storage.setup()
 
 @app.route('/places', methods=['GET'])
 def display_map():
     '''
     At this endpoint we show the full world map via Google maps
     '''
-    return render_template("index.tpl")
+    key=config.MapsAPIKey
+    return render_template("maps.html", key=key)
 
 
 @app.route('/places/<name>', methods=['GET'])
