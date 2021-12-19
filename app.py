@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import re
 import requests
 from flask import Flask, jsonify, request, url_for, render_template
 import storage as storage
@@ -15,22 +14,31 @@ trending_now = trend_world.json()
 app = Flask(__name__)
 storage.setup()
 
+@app.route('/', methods=['GET'])
+def homepage():
+    '''
+    Homepage
+    '''
+    return render_template("index.html")
+
+
+
 @app.route('/places', methods=['GET'])
 def display_map():
     '''
     At this endpoint we show the full world map via Google maps
     '''
-    key=config.MapsAPIKey
+    key = config.MapsAPIKey
     return render_template("maps.html", key=key)
 
 
 @app.route('/places/<name>', methods=['GET'])
 def display_map1(name):
-    #print("från display_country: " + name)
+    #print("from display_country: " + name)
     print(name)
     for trend in trending_now:
         
-        if(trend['name'] == name): # we switch this to a paramiter från the user input
+        if(trend['name'] == name): # we switch this to a parameter from the user input
             print(name)
             woeid = trend['woeid']
             trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
