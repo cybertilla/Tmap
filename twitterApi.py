@@ -17,9 +17,9 @@ def getCountry(name):
 
         #print(trend['name'], trend['country'], trend['woeid'])
 
-    trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
+   # trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
 
-    return getTheTrendingTweets(trend_place)
+    #return getTheTrendingTweets(trend_place)
 
 #plocka ut name, url, välja ut det som har mest tweet volume.
 
