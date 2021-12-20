@@ -22,7 +22,6 @@ def homepage():
     return render_template("index.html")
 
 
-
 @app.route('/places', methods=['GET'])
 def display_map():
     '''
@@ -33,7 +32,7 @@ def display_map():
 
 
 @app.route('/places/<name>', methods=['GET'])
-def display_map1(name):
+def display_location(name):
     #print("from display_country: " + name)
     print(name)
     for trend in trending_now:
@@ -103,19 +102,20 @@ def display_map1(name):
     print(y)
 
 
-    return y
+    return render_template("location.html", y=y)
             
 
     #print(trend['name'], trend['country'], trend['woeid'])
     #text = storage.display_country(name)
     #y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
+
            
     
     
 
-@app.route("/apidocs/", methods=['GET'])
+@app.route("/apidocs", methods=['GET'])
 def swagger():
     '''
     shows documentation for the apidocs
     '''
-    pass
+    return render_template("docs.html")
