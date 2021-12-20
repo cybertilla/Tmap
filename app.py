@@ -22,7 +22,6 @@ def homepage():
     return render_template("index.html")
 
 
-
 @app.route('/places', methods=['GET'])
 def display_map():
     '''
@@ -103,12 +102,13 @@ def display_location(name):
     print(y)
 
 
-    return y
+    return render_template("location.html", y=y)
             
 
     #print(trend['name'], trend['country'], trend['woeid'])
     #text = storage.display_country(name)
     #y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
+
            
     
     
@@ -118,4 +118,4 @@ def swagger():
     '''
     shows documentation for the apidocs
     '''
-    pass
+    return render_template("docs.html")
