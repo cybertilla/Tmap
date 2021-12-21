@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+<script>
+    function initMap() {
+        const uluru = {
+            lat: -25.344,
+            lng: 131.036
+        };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+        });
+    }
+</script>
+
+{%endblock%}
+
+{% block content %}
+<h3>Check out this trend map</h3>
+<div id="map"> </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap&libraries=&v=weekly" async></script>
+
+{%endblock%}
