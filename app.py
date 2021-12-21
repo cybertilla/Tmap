@@ -34,9 +34,10 @@ def display_map():
 
 @app.route("/places/<name>", methods=['GET'])
 def display_map1(name):
-    print("från route: " + name)
+    #print("från route: " + name)fl
     text = storage.display_country(name)
     y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
+    
     return y
     '''
     At this endpoint we show the full world map via Google maps
