@@ -74,8 +74,8 @@ def getTextToTranslate(list1):
 
 
 
-test = getCountry('Turkey')
-#print(test)
+test = getCountry('Sweden')
+print(test)
 
 text = getTheTrendingTweets(test)
 print("getTheTrendingTweet: ", text)

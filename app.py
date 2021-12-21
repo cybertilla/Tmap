@@ -40,13 +40,16 @@ def display_map():
     return render_template("index.tpl")
 
 
-@app.route("/translated", methods=['POST'])
-def translate():
+@app.route("/translated/<text>", methods=['POST'])
+def translate(text):
     #translatedText = translateAPI.translate(text)
-    text = 'hej'
-    translateRequests = requests.get("https://translation.googleapis.com/language/translate/v2?key=" + config.googleKeyTranslate + "&q=" + text + "&target=es")
-    print(translateRequests.json())
-    return translateRequests.json()
+    
+    translateRequests = requests.get("https://translation.googleapis.com/language/translate/v2?key=" + config.googleKeyTranslate + "&q=" + text + "&target=en")
+    test = translateRequests.json()
+    print(translateRequests.json)
+    y = json.dumps(test, indent=4, sort_keys=True, default=str, ensure_ascii=False).encode('UTF-8')
+    print(y)
+    return ""
     #return translatedText
 
 
