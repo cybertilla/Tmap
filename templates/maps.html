@@ -1,19 +1,39 @@
 {% extends "base.html" %} {% block header %}
 <script>
     function initMap() {
-        const uluru = {
-            lat: -25.344,
-            lng: 131.036
+        var data = {
+            lat: null,
+            lng: null
         };
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: uluru,
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 47.54,
+                lng: 19.19
+            },
+            zoom: 3,
+            styles: [{
+                featureType: 'poi',
+                stylers: [{
+                        visibility: 'off'
+                    }] // Turn off POI.
+            }, {
+                featureType: 'transit.station',
+                stylers: [{
+                        visibility: 'off'
+                    }] // Turn off bus, train stations etc.
+            }],
+            disableDoubleClickZoom: true,
+            streetViewControl: false,
         });
-        // The marker, positioned at Uluru
-        const marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
+        map.addListener('click', function(e) {
+            data.lat = e.latLng.lat();
+            data.lng = e.latLng.lng();
+
+            var marker = new google.maps.Marker({
+                position: data,
+                map: map,
+            });
         });
     }
 </script>
