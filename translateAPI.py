@@ -1,6 +1,5 @@
 import requests
 import config
-import twitterApi
 import json
 
 def translate(text):

@@ -3,6 +3,7 @@ import requests
 import sqlite3
 import config
 import twitterApi
+import re
 #import relevant stuff
 
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}

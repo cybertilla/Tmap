@@ -10,7 +10,6 @@ trending_now = trend_world.json()
 
 
 def getCountry(name):
-    print('hallå')
     for trend in trending_now:
         
         if(trend['name'] == name): # we switch this to a paramiter från the user input
@@ -18,7 +17,6 @@ def getCountry(name):
             trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
             trend_place = trend_place.json()
         #print(trend['name'], trend['country'], trend['woeid'])
-    print('test')
 
     trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
     return trend_place.json()
@@ -64,29 +62,36 @@ def getTextToTranslate(list1):
 
 
     for res in resource_url['statuses']:
-        
-        for r in res['text']:
+        #text = res['text']
+        #fav_point = res['favorite_count']
+        res['truncated'] = 'False'
+        for r in res['entities']['urls']:
+            #url = r['url']
             if(res['favorite_count'] > likes):
-                    list2.clear()
-                    likes = res['favorite_count']
-                    text = res['text']
-                    list2.append(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
-                    text = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text)
-                    list2.append(text)
-                    
-                    list2.append(res['favorite_count'])
-                    #print(list2)
+            
+                list2.clear()
+                text = re.sub(r'http\S+', '', res['text'])
+                likes = res['favorite_count']
+                url = r['url']
+                                
+                x2 = {
+                    "text": text,
+                    "url": url,
+                    "likes": likes
+                }
+
+                list2.append(x2)
+
     return list2
 
 
 
-
-test = getCountry('Sweden')
+'''test = getCountry('Sweden')
 print(test)
 
 text = getTheTrendingTweets(test)
 print("getTheTrendingTweet: ", text)
 trans = getTextToTranslate(text)
 print("getTextToTranslate: ",trans)
-
+'''
 
