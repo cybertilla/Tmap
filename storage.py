@@ -3,11 +3,13 @@ import requests
 import sqlite3
 import config
 import twitterApi
-#import relevant stuff
 
+
+#should this really be in both storage and app?
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
 trending_now = trend_world.json()
+
 
 def setup():
     '''
@@ -23,32 +25,19 @@ def setup():
     conn.close()
     '''
 
-def display_map():
-    '''
-    Shows the world map from GoogleMapAPI
-    '''
-    #Get request to Google Map API
-    return map
-
 def display_country(name):
     woeid = " "
     #print("från display_country: " + name)
-    
 
     for trend in trending_now:
         
         if(trend['name'] == name): # we switch this to a paramiter från the user input
             woeid = trend['woeid']
-            trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
+            trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid), headers=my_headers)
 
     #print(trend['name'], trend['country'], trend['woeid'])
 
-
-
-
 #plocka ut name, url, välja ut det som har mest tweet volume.
-
-
     list1 = []
     maxNum = 0
 
@@ -69,10 +58,6 @@ def display_country(name):
                 }
                 #print(x)
                 list1.append(x)
-            
-
-
-
 
     likes = 0
     list2 = []
@@ -85,20 +70,20 @@ def display_country(name):
         for r in res['text']:
 
             if(res['favorite_count'] > likes):
-
+                #empty previous list2
                 list2.clear()
                 likes = res['favorite_count']
                 #print("innan: ", likes)
                 text = res['text']
                 #print(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
                 list2.append(res['text'])
-                list2.append(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
+                list2.append(res.search("(?P<url>https?://[^\s]+)", text).group("url"))
                 list2.append(res['favorite_count'])
                 #print(list2)
 
 
 '''
-Centers map on specifi town, calls Twitter API for hashtag data
+Centers map on specific town, calls Twitter API for hashtag data
 Returns JSON object??
 '''
 

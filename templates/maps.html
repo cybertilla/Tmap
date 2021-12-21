@@ -21,10 +21,22 @@
     }
 </script>
 
+
+<script>
+    function centerMap() {
+        var data = '';
+            data = document.getElementById("myInput").value;
+            console.log(data);
+
+    }
+</script>
+
 {%endblock%}
 
 {% block content %}
 <h3>Check out this trend map</h3>
+<h1>{{y}}</h1>
+
 <div id="map"> </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap&libraries=&v=weekly" async></script>

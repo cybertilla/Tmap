@@ -1,27 +1,11 @@
 {% extends "base.html" %}
+{% block header %}
 
+
+{%endblock%}
 {% block content %}
-
-<script>
-    function sendName() {
-        return function() {
-            var data = '';
-            data = getInputValue();
-            console.log(data);
-
-            $.ajax({
-                method: "GET",
-                url: 'http://localhost:5000/places/' + data,
-                data: JSON.stringify(data),
-                headers: {
-                    "Accept": "application/json"
-                }
-            }).done(function(result) {});
-        }
-    }
-</script>
-
-<h3>Check out this trend map</h3>
+<h1>{{y}}</h1>
+<h3>Check out this trend map for <data></h3>
 <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap&libraries=&v=weekly" async></script>
 

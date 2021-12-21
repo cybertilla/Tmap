@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import requests
-from flask import Flask, jsonify, request, url_for, render_template
+from requests.models import encode_multipart_formdata
+from flask import Flask, jsonify, url_for, render_template
 import storage as storage
 import json
 import config
@@ -23,6 +24,7 @@ def homepage():
 
 
 @app.route('/places', methods=['GET'])
+@app.route('/places/', methods=['GET'])
 def display_map():
     '''
     At this endpoint we show the full world map via Google maps
@@ -32,9 +34,12 @@ def display_map():
 
 
 @app.route('/places/<name>', methods=['GET'])
+@app.route('/places/<name>/', methods=['GET'])
 def display_location(name):
+    key = config.MapsAPIKey
     #print("from display_country: " + name)
     print(name)
+    print(trending_now)
     for trend in trending_now:
         
         if(trend['name'] == name): # we switch this to a parameter from the user input
@@ -42,7 +47,10 @@ def display_location(name):
             woeid = trend['woeid']
             trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
             trend_place = trend_place.json()
-        
+        else:
+            #we need to set a default trend_place, this is next step
+            trend_place = trending_now[0]
+
     list1 = []
     maxNum = 0
     
@@ -101,19 +109,20 @@ def display_location(name):
     y = json.dumps(list2, indent=4, sort_keys=True, default=str)
     print(y)
 
+    #print(trend['name'], trend['country'], trend['woeid'])
+    text = storage.display_country(name)
+    y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
 
-    return render_template("location.html", y=y)
+    return render_template("location.html", y=y, key=key)
             
 
-    #print(trend['name'], trend['country'], trend['woeid'])
-    #text = storage.display_country(name)
-    #y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
 
            
     
     
 
 @app.route("/apidocs", methods=['GET'])
+@app.route("/apidocs/", methods=['GET'])
 def swagger():
     '''
     shows documentation for the apidocs

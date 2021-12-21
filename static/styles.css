@@ -10,12 +10,6 @@ body {
   padding: 0;
 }
 
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
-/* Optional: Makes the sample page fill the window. 
-html,
-
 
 /* The popup bubble styling. 
 .popup-bubble {
