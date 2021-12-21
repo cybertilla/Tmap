@@ -6,6 +6,9 @@ import storage as storage
 import json
 import config
 
+import twitterApi
+import translateAPI
+#import relevant objects
 
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
@@ -31,6 +34,18 @@ def display_map():
     return render_template("maps.html", key=key)
 
 
+
+@app.route("/translated/<text>", methods=['POST'])
+def translate(text):
+    #translatedText = translateAPI.translate(text)
+    translateRequests = requests.get("https://translation.googleapis.com/language/translate/v2?key=" + config.googleKeyTranslate + "&q=" + text + "&target=en")
+    test = translateRequests.json()
+    print(translateRequests.json)
+    y = json.dumps(test, indent=4, sort_keys=True, default=str, ensure_ascii=False).encode('UTF-8')
+    print(y)
+    return ""
+
+
 @app.route('/places/<name>', methods=['GET'])
 def display_location(name):
     #print("from display_country: " + name)
@@ -45,69 +60,30 @@ def display_location(name):
         
     list1 = []
     maxNum = 0
+
     
-    for trends in trend_place:
-        for t in trends['trends']:
-
-            if(t['tweet_volume'] == 'None' or t['tweet_volume'] is None):
-                pass
-                
-            elif(t['tweet_volume'] > maxNum):
-                list1.clear()
-                maxNum = t['tweet_volume']
-                x = {
-                    "tweet_volume": t['tweet_volume'],
-                    "name": t['name'],
-                    "url": t['url']
-                }
-                list1.append(x)
-
-    likes = 0
-    list2 = []
-    list3 = []
-    key = list1[0]['name'].replace('#', " ")
-    resource_url = requests.get('https://api.twitter.com/1.1/search/tweets.json?q=' + key + '&result_type=popular', headers =my_headers)
-    resource_url = resource_url.json()
-
-    print(key)
-    for res in resource_url['statuses']:
-        
-        for r in res['text']:
-
-            if(res['favorite_count'] > likes):
-            
-                list2.clear()
-                text = res['text']
-                likes = res['favorite_count']
-                url = res['urls']
-                                
-                x2 = {
-                    "text": text,
-                    "url": url,
-                    "likes": likes
-                }
-
-                print("text: ",text)
-                print("url: ",url)
-                list2.append(x2)
-                    #print("innan: ", likes)
-                    #print(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
-                    #list2.append(res['text'])
-                    #list2.append(re.search("(?P<url>https?://[^\s]+)", text).group("url"))
-                    #list2.append(res['favorite_count'])
-                    #print(list2)
     
-
-    y = json.dumps(list2, indent=4, sort_keys=True, default=str)
-    print(y)
+    #return translatedText
 
 
-    return render_template("location.html", y=y)
+
+
+
+@app.route('/tweets/<name>', methods=['GET'])
+def display_map1(name):
+
+    country = twitterApi.getCountry(name)
+    list = twitterApi.getTheTrendingTweets(country)
+    list1 = twitterApi.getTextToTranslate(list)
+    y = json.dumps(list1, indent=4, sort_keys=True, default=str, ensure_ascii=False).encode('UTF-8')
+    return y.decode()
+
             
 
     #print(trend['name'], trend['country'], trend['woeid'])
     #text = storage.display_country(name)
     #y = json.dumps(json.loads(text), indent=4, sort_keys=True, default=str)
+
 
            
     
