@@ -51,8 +51,8 @@ def display_map1(place):
     #Return this later print(list1)
 
     list1 = list1[0]['text'].replace('#', " ")
-    list1 = list1.replace("「", " ' ")
-    list1 = list1.replace("」", " ' ")
+    list1 = list1.replace("「", "  ")
+    list1 = list1.replace("」", "  ")
 
     return render_template("index.html", y=list1)
 
