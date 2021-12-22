@@ -10,12 +10,12 @@ trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', 
 trending_now = trend_world.json()
 
 #Does not return a list YET
-def country_list():
+def place_list():
     for trend in trending_now:
         print(trend['name'], trend['country'])
 
 
-def getCountry(name):
+def getPlace(name):
     for trend in trending_now:
         
         if(trend['name'] == name): # we switch this to a paramiter från the user input
@@ -83,7 +83,8 @@ def getTextToTranslate(list1):
                 x2 = {
                     "text": text,
                     "url": url,
-                    "likes": likes
+                    "likes": likes,
+                    "topic": key
                 }
 
                 list2.append(x2)
@@ -91,13 +92,13 @@ def getTextToTranslate(list1):
     return list2
 
 
-
-'''test = getCountry('Turkey')
+'''test = getPlace('Sweden')
 print(test)
 
 text = getTheTrendingTweets(test)
+print(text[0]['name'])
 print("getTheTrendingTweet: ", text)
 trans = getTextToTranslate(text)
 print("getTextToTranslate: ",trans)'''
 
-country_list()
+#country_list()

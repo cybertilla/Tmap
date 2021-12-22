@@ -39,22 +39,24 @@ def display_map():
 def translate(text):
 
     y = translateAPI.translate(text)
-    y = y.decode()
     
     return render_template("index.html", y=y)
 
-@app.route('/tweets/<name>', methods=['GET'])
-def display_map1(name):
+@app.route('/tweets/<place>', methods=['GET'])
+def display_map1(place):
 
-    country = twitterApi.getCountry(name)
-    list = twitterApi.getTheTrendingTweets(country)
+    location = twitterApi.getPlace(place)
+    list = twitterApi.getTheTrendingTweets(location)
     list1 = twitterApi.getTextToTranslate(list)
-    list1=list1[0]['text']
-    list1 = list1.replace('#', " ")
+    #Return this later print(list1)
+
+    list1 = list1[0]['text'].replace('#', " ")
+    list1 = list1.replace("「", " ' ")
+    list1 = list1.replace("」", " ' ")
+
     return render_template("index.html", y=list1)
 
             
-
 @app.route("/apidocs", methods=['GET'])
 def swagger():
     '''
@@ -62,5 +64,6 @@ def swagger():
     '''
 
     documentation = requests.get('https://app.swaggerhub.com/apis-docs/MiuMiuMiuMiuMiu/TweetMap/1.0.0')
+    print(documentation)
 
-    return render_template("docs.html", documentation = documentation)
+    return render_template("documentation.html")
