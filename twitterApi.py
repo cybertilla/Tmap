@@ -1,3 +1,4 @@
+from typing import _ProtocolMeta
 import requests
 from requests.models import to_native_string
 import config
@@ -7,6 +8,11 @@ import re
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
 trending_now = trend_world.json()
+
+#Does not return a list YET
+def country_list():
+    for trend in trending_now:
+        print(trend['name'], trend['country'])
 
 
 def getCountry(name):
@@ -86,12 +92,12 @@ def getTextToTranslate(list1):
 
 
 
-'''test = getCountry('Sweden')
+'''test = getCountry('Turkey')
 print(test)
 
 text = getTheTrendingTweets(test)
 print("getTheTrendingTweet: ", text)
 trans = getTextToTranslate(text)
-print("getTextToTranslate: ",trans)
-'''
+print("getTextToTranslate: ",trans)'''
 
+country_list()

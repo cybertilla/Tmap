@@ -60,4 +60,7 @@ def swagger():
     '''
     shows documentation for the apidocs
     '''
-    return render_template("docs.html")
+
+    documentation = requests.get('https://app.swaggerhub.com/apis-docs/MiuMiuMiuMiuMiu/TweetMap/1.0.0')
+
+    return render_template("docs.html", documentation = documentation)
