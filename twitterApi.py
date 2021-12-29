@@ -15,7 +15,7 @@ def country_list():
         print(trend['name'], trend['country'])
 
 
-def getCountry(name):
+def getPlace(name):
     for trend in trending_now:
         
         if(trend['name'] == name): # we switch this to a paramiter från the user input

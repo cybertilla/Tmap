@@ -53,21 +53,42 @@ function geocodeLatLng(geocoder, map, infowindow, lat, long) {
           map: map,
         });
 
-        
         infowindow.setContent(response.results[4].formatted_address);
         infowindow.open(map, marker);
+
+        var address = response.results[4].formatted_address;
+        var newAdd = address.split(", ");
+        var newAddress = newAdd[newAdd.length - 1];
+
+    readAPI(newAddress)
+
       } else {
         window.alert("No results found");
       }
     })
-    .catch((e) => window.alert("Geocoder failed due to: " + e));
+    .catch((e) => console.log("Geocoder failed due to: " + e));
+
 }
+
+function readAPI(newAddress) {
+  
+  fetch('http://127.0.0.1:5000/tweets/' + newAddress)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.log('Nothing is trending here'));
+}
+
+
+
 </script>
 
 
 {%endblock%} {% block content %}
 <h3>Check out this trend map</h3>
 <div id="map"> </div>
+<div>
+  <p>{{y}}</p>
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{geo}}&callback=initMap&libraries=&v=weekly" async></script>
 
