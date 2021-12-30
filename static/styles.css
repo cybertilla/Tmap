@@ -2,6 +2,17 @@
 #map {
   height: 850px;
   width: 75%;
+  float: left;
+}
+
+#tweet-box {
+  height: 850px;
+  float: left;
+  padding: 9px;
+}
+
+col-8 {
+  width: 75%;
 }
 
 body {
@@ -9,6 +20,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */

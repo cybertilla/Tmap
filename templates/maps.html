@@ -74,21 +74,32 @@ function readAPI(newAddress) {
   
   fetch('http://127.0.0.1:5000/tweets/' + newAddress)
   .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.log('Nothing is trending here'));
+  .then(data => document.getElementById("tweet").innerHTML = data)
+  .catch(error => document.getElementById("tweet").innerHTML = 'Nothing is trending here');
+
 }
-
-
 
 </script>
 
 
 {%endblock%} {% block content %}
-<h3>Check out this trend map</h3>
+
+<div class="row">
+  <div class="col-8">
+    <h3>Check out this trend map</h3>
 <div id="map"> </div>
-<div>
-  <p>{{y}}</p>
+  </div>
+  <div class="col-4">
+    <div id="tweet-box">
+      <h3>The trending tweet:</h3>
+    <div id="tweet">
+      <p></p>
+    </div>
+  </div>
 </div>
+
+</div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{geo}}&language=en&callback=initMap&libraries=&v=weekly" async></script>
 
