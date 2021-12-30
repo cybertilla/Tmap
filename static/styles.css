@@ -1,7 +1,7 @@
 
 #map {
   height: 850px;
-  width: 75%;
+  width: 100%;
   float: left;
 }
 
@@ -22,9 +22,12 @@ body {
 }
 
 footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
+  display: block;
+  padding: 10px;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
 }
 
 

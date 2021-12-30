@@ -79,6 +79,19 @@ function readAPI(newAddress) {
 
 }
 
+function notTranslate(){
+//get translation from API
+  var text = document.getElementById("tweet").textContent;
+  //console.log(text)
+  //byt ut fetch mot ajax/annat??
+  fetch('http://127.0.0.1:5000/translated/' + text)
+  .then(response => response.json())
+
+  .then(data => document.getElementById("translated-text").innerHTML = data)
+  .catch(error => document.getElementById("translate").innerHTML = 'Sorry, we can not translate this.');
+
+}
+
 </script>
 
 
@@ -93,6 +106,12 @@ function readAPI(newAddress) {
     <div id="tweet-box">
       <h3>The trending tweet:</h3>
     <div id="tweet">
+      <p></p>
+    </div>
+    <div id="translate">
+      <button type="button" onclick="notTranslate()">Translate to English</button>
+    </div>
+    <div id="translated-text">
       <p></p>
     </div>
   </div>
