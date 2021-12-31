@@ -34,7 +34,7 @@ def display_map():
     At this endpoint we show the full world map via Google maps
     '''
     key = config.MapsAPIKey
-    geo = config.googleKeyTranslate
+    geo = config.MapsAPIKey
     return render_template("maps.html", key=key, geo=geo)
 
 
@@ -43,7 +43,8 @@ def translate(text):
 
     y = translateAPI.translate(text)
     y = y.decode()
-    return render_template("index.html", y=y)
+    
+    return y
 
 @app.route('/tweets/<name>', methods=['GET'])
 def display_map1(name):
@@ -52,11 +53,9 @@ def display_map1(name):
     list = twitterApi.getTheTrendingTweets(country)
     list1 = twitterApi.getTextToTranslate(list)
 
-    list1=list1[0]['text']
-    list1 = list1.replace('#', " ")
-    y = json.dumps(list1, indent=4, sort_keys=True, default=str, ensure_ascii=False)
-    print(y)
-    return y
+    tweet = json.dumps(list1, indent=4, sort_keys=True, default=str, ensure_ascii=False)
+
+    return tweet
 
             
 @app.route("/apidocs", methods=['GET'])

@@ -70,7 +70,55 @@ function geocodeLatLng(geocoder, map, infowindow, lat, long) {
 
 }
 
+
 function readAPI(newAddress) {
+    $.ajax({
+      method: "GET",
+      url: 'http://127.0.0.1:5000/tweets/' + newAddress,
+      //contentType: "application/json",
+      //dataType: 'json',
+      //data: JSON.parse(data),
+      //data: JSON.stringify(data),
+      headers: {"Accept": "application/json"}
+      }).done(function(result) {
+          result = JSON.parse(result)
+            $("#tweet > p").empty();
+            $("#tweet").append(`
+            <p id="tweet-to-translate">${result[0].text}<p>
+            <a href="${result[0].url}">Read the tweet here!</a>
+            `)
+        });
+  }
+
+function translateTweet(text) {
+  $.ajax({
+    method: "POST",
+    url: 'http://127.0.0.1:5000/translated/' + text,
+    //contentType: "application/json",
+    //dataType: 'json',
+    //data: JSON.parse(data),
+    //data: JSON.stringify(data),
+    headers: {"Accept": "application/json"}
+    }).done(function(result) {
+        result = JSON.parse(result)
+        console.log(result)
+          /*$("#translated-text > p").empty();
+          $("#translated-text").append(`
+          <p>${result}<p>
+          `);*/
+      });
+}
+
+function myFunction() {
+  var text = document.getElementById("#tweet-to-translate").innerHTML;
+  translateTweet(text);
+}
+
+
+
+
+
+/*function readAPI(newAddress) {
   
   fetch('http://127.0.0.1:5000/tweets/' + newAddress)
   .then(response => response.json())
@@ -90,7 +138,7 @@ function notTranslate(){
   .then(data => document.getElementById("translated-text").innerHTML = data)
   .catch(error => document.getElementById("translate").innerHTML = 'Sorry, we can not translate this.');
 
-}
+}*/
 
 </script>
 
@@ -105,15 +153,11 @@ function notTranslate(){
   <div class="col-4">
     <div id="tweet-box">
       <h3>The trending tweet:</h3>
-    <div id="tweet">
-      <p></p>
-    </div>
-    <div id="translate">
-      <button type="button" onclick="notTranslate()">Translate to English</button>
-    </div>
-    <div id="translated-text">
-      <p></p>
-    </div>
+      <div id="tweet"></div>
+      <div id="translate-button">
+        <button id="translate" type="button" onclick="myFunction()">Translate to English</button>
+      </div>
+      <div id="translated-text"></div>
   </div>
 </div>
 
