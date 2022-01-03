@@ -16,7 +16,7 @@ trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', 
 trending_now = trend_world.json()
 
 app = Flask(__name__)
-storage.setup()
+
 
 @app.route('/', methods=['GET'])
 def homepage():
@@ -58,12 +58,13 @@ def display_map1(name):
     return tweet
 
             
-@app.route("/apidocs", methods=['GET'])
+@app.route("/apidocs")
+@app.route("/apidocs/")
 def swagger():
     '''
     shows documentation for the apidocs
     '''
 
-    documentation = requests.get('https://app.swaggerhub.com/apis-docs/MiuMiuMiuMiuMiu/TweetMap/1.0.0')
+    #documentation = requests.get('https://app.swaggerhub.com/apis-docs/MiuMiuMiuMiuMiu/TweetMap/1.0.0')
 
-    return render_template("docs.html", documentation = documentation)
+    return render_template("swagger.html")
