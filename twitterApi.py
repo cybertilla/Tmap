@@ -10,9 +10,9 @@ trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', 
 trending_now = trend_world.json()
 
 #Does not return a list YET
-def country_list():
-    for trend in trending_now:
-        print(trend['name'], trend['country'])
+#def country_list():
+#    for trend in trending_now:
+#        print(trend['name'], trend['country'])
 
 
 def getPlace(name):
@@ -28,14 +28,9 @@ def getPlace(name):
             woeid = trend['woeid']
             trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
             trend_place = trend_place.json()
-        #print(trend['name'], trend['country'], trend['woeid'])
 
     trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
     return trend_place.json()
-
-   # trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
-
-    #return getTheTrendingTweets(trend_place)
 
 
 #plocka ut name, url, välja ut det som har mest tweet volume.
@@ -96,14 +91,4 @@ def getTextToTranslate(list1):
 
     return list2
 
-
-'''test = getCountry('Turkey')
-print(test)
-
-text = getTheTrendingTweets(test)
-print(text[0]['name'])
-print("getTheTrendingTweet: ", text)
-trans = getTextToTranslate(text)
-print("getTextToTranslate: ",trans)'''
-
-country_list()
+#country_list()

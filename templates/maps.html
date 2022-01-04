@@ -68,7 +68,7 @@
                     window.alert("No results found");
                 }
             })
-            .catch((e) => console.log("Geocoder failed due to: " + e));
+            .catch((e) => window.alert("We could not find the counrty you were looking for, try again."));
 
     }
 
@@ -83,11 +83,18 @@
             //data: JSON.stringify(data),
             headers: {
                 "Accept": "application/json"
+            },
+            statusCode: {
+                500: function() {
+                    $("#tweet").empty();
+                    $("#translated-text > p").empty();
+                    $("#tweet").append(`
+                    <p id="tweet-to-translate">No trending tweets available at this location</p>`)
+                }
             }
         }).done(function(result) {
             result = JSON.parse(result)
-            if (result)
-                $("#tweet").empty();
+            $("#tweet").empty();
             $("#translated-text > p").empty();
             $("#tweet").append(`
             <p id="tweet-to-translate">${result[0].text}</p>
