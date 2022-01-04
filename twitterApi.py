@@ -16,6 +16,12 @@ def country_list():
 
 
 def getPlace(name):
+    if(name == 'USA'):
+        name = 'United States'
+    if(name == 'South Korea' or name == 'North Korea'):
+        name = 'Korea'
+    if(name == 'Riyadh Province Saudi Arabia'):
+        name = 'Saudi Arabia'
     for trend in trending_now:
         
         if(trend['name'] == name): # we switch this to a paramiter från the user input
