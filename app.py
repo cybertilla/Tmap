@@ -34,16 +34,18 @@ def display_map():
     At this endpoint we show the full world map via Google maps
     '''
     key = config.MapsAPIKey
-    geo = config.googleGeocodingAPI
+    geo = config.googleKeyTranslate
     return render_template("maps.html", key=key, geo=geo)
 
 
-@app.route('/translated/<text>', methods=['POST'])
-def translate(text):
-
+@app.route('/translated/', methods=['POST'])
+def translate():
+    #print(request.data)
+    text = request.json["tweetText"]
+    #print(text)
     y = translateAPI.translate(text)
     y = y.decode()
-    
+    #print(y)
     return y
 
 @app.route('/tweets/<name>', methods=['GET'])

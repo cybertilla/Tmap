@@ -31,135 +31,155 @@
         map.addListener('click', function(e) {
             data.lat = e.latLng.lat();
             data.lng = e.latLng.lng();
-            geocodeLatLng(geocoder, map, infowindow, data.lat, data.lng)}
-            );
-}
-
-
-function geocodeLatLng(geocoder, map, infowindow, lat, long) {
-  const latlng = {
-    lat: parseFloat(lat),
-    lng: parseFloat(long),
-  };
-
-  geocoder
-    .geocode({ location: latlng })
-    .then((response) => {
-      if (response.results[0]) {
-        map.setZoom(3);
-
-        const marker = new google.maps.Marker({
-          position: latlng,
-          map: map,
+            geocodeLatLng(geocoder, map, infowindow, data.lat, data.lng)
         });
-
-        infowindow.setContent(response.results[4].formatted_address);
-        infowindow.open(map, marker);
-
-        var address = response.results[4].formatted_address;
-        var newAdd = address.split(", ");
-        var newAddress = newAdd[newAdd.length - 1];
-
-    readAPI(newAddress)
-
-      } else {
-        window.alert("No results found");
-      }
-    })
-    .catch((e) => console.log("Geocoder failed due to: " + e));
-
-}
+    }
 
 
-function readAPI(newAddress) {
-    $.ajax({
-      method: "GET",
-      url: 'http://127.0.0.1:5000/tweets/' + newAddress,
-      //contentType: "application/json",
-      //dataType: 'json',
-      //data: JSON.parse(data),
-      //data: JSON.stringify(data),
-      headers: {"Accept": "application/json"}
-      }).done(function(result) {
-          result = JSON.parse(result)
-            $("#tweet > p").empty();
+    function geocodeLatLng(geocoder, map, infowindow, lat, long) {
+        const latlng = {
+            lat: parseFloat(lat),
+            lng: parseFloat(long),
+        };
+
+        geocoder
+            .geocode({
+                location: latlng
+            })
+            .then((response) => {
+                if (response.results[0]) {
+                    map.setZoom(3);
+
+                    const marker = new google.maps.Marker({
+                        position: latlng,
+                        map: map,
+                    });
+
+                    infowindow.setContent(response.results[4].formatted_address);
+                    infowindow.open(map, marker);
+
+                    var address = response.results[4].formatted_address;
+                    var newAdd = address.split(", ");
+                    var newAddress = newAdd[newAdd.length - 1];
+
+                    readAPI(newAddress)
+
+                } else {
+                    window.alert("No results found");
+                }
+            })
+            .catch((e) => console.log("Geocoder failed due to: " + e));
+
+    }
+
+
+    function readAPI(newAddress) {
+        $.ajax({
+            method: "GET",
+            url: 'http://127.0.0.1:5000/tweets/' + newAddress,
+            //contentType: "application/json",
+            //dataType: 'json',
+            //data: JSON.parse(data),
+            //data: JSON.stringify(data),
+            headers: {
+                "Accept": "application/json"
+            }
+        }).done(function(result) {
+            result = JSON.parse(result)
+            if (result)
+                $("#tweet").empty();
+            $("#translated-text > p").empty();
             $("#tweet").append(`
-            <p id="tweet-to-translate">${result[0].text}<p>
+            <p id="tweet-to-translate">${result[0].text}</p>
             <a href="${result[0].url}">Read the tweet here!</a>
+            <button id="translate" type="button" onclick="myFunction()">Translate to English</button>
             `)
         });
-  }
+    }
 
-function translateTweet(text) {
-  $.ajax({
-    method: "POST",
-    url: 'http://127.0.0.1:5000/translated/' + text,
-    //contentType: "application/json",
-    //dataType: 'json',
-    //data: JSON.parse(data),
-    //data: JSON.stringify(data),
-    headers: {"Accept": "application/json"}
-    }).done(function(result) {
-        result = JSON.parse(result)
-        console.log(result)
-          /*$("#translated-text > p").empty();
-          $("#translated-text").append(`
-          <p>${result}<p>
-          `);*/
-      });
-}
+    function translateTweet(text) {
+        var data = {
+            tweetText: text
+        };
+        console.log(data);
+        $.ajax({
+            method: "POST",
+            url: 'http://127.0.0.1:5000/translated/',
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: 'json',
+            headers: {
+                "Accept": "application/json"
+            }
+        }).done(function(result) {
+            if (result == " " && result == null) {
+                $("#translated-text > p").empty();
+                $("#translated-text").append(`
+                <p>Sorry there was nothing to translate</p>
+                `);
+            } else {
+                $("#translated-text > p").empty();
+                $("#translated-text").append(`
+                <p>${result}</p>
+                `);
+            }
 
-function myFunction() {
-  var text = document.getElementById("#tweet-to-translate").innerHTML;
-  translateTweet(text);
-}
+
+        });
+    }
+
+    function myFunction() {
+        console.log(document.getElementById("tweet-to-translate")); // document.getElementById funkar inte på tweet-to-transalte, det är Null
+        //det är anledningen till att det nedan inte funkar! försökt ändra så att det inte är null men fattar inte hur
+        var text = document.getElementById("tweet-to-translate").innerHTML;
+        translateTweet(text);
+    }
 
 
 
 
 
-/*function readAPI(newAddress) {
-  
-  fetch('http://127.0.0.1:5000/tweets/' + newAddress)
-  .then(response => response.json())
-  .then(data => document.getElementById("tweet").innerHTML = data)
-  .catch(error => document.getElementById("tweet").innerHTML = 'Nothing is trending here');
 
-}
+    /*function readAPI(newAddress) {
+      
+      fetch('http://127.0.0.1:5000/tweets/' + newAddress)
+      .then(response => response.json())
+      .then(data => document.getElementById("tweet").innerHTML = data)
+      .catch(error => document.getElementById("tweet").innerHTML = 'Nothing is trending here');
 
-function notTranslate(){
-//get translation from API
-  var text = document.getElementById("tweet").textContent;
-  //console.log(text)
-  //byt ut fetch mot ajax/annat??
-  fetch('http://127.0.0.1:5000/translated/' + text)
-  .then(response => response.json())
+    }
 
-  .then(data => document.getElementById("translated-text").innerHTML = data)
-  .catch(error => document.getElementById("translate").innerHTML = 'Sorry, we can not translate this.');
+    function notTranslate(){
+    //get translation from API
+      var text = document.getElementById("tweet").textContent;
+      //console.log(text)
+      //byt ut fetch mot ajax/annat??
+      fetch('http://127.0.0.1:5000/translated/' + text)
+      .then(response => response.json())
 
-}*/
+      .then(data => document.getElementById("translated-text").innerHTML = data)
+      .catch(error => document.getElementById("translate").innerHTML = 'Sorry, we can not translate this.');
 
+    }*/
 </script>
 
 
 {%endblock%} {% block content %}
 
 <div class="row">
-  <div class="col-8">
-    <h3>Check out this trend map</h3>
-<div id="map"> </div>
-  </div>
-  <div class="col-4">
-    <div id="tweet-box">
-      <h3>The trending tweet:</h3>
-      <div id="tweet"></div>
-      <div id="translate-button">
-        <button id="translate" type="button" onclick="myFunction()">Translate to English</button>
-      </div>
-      <div id="translated-text"></div>
-  </div>
-</div>
+    <div class="col-8">
+        <h3>Check out this trend map</h3>
+        <div id="map"> </div>
+    </div>
+    <div class="col-4">
+        <div id="tweet-box">
+            <h3>The trending tweet:</h3>
+            <div id="tweet"></div>
+            <div id="translate-button">
+            </div>
+            <div id="translated-text"></div>
+        </div>
+    </div>
 
 </div>
 
