@@ -3,6 +3,7 @@
   height: 850px;
   width: 100%;
   float: left;
+  padding: 15px;
 }
 
 #tweet-box {
@@ -10,15 +11,18 @@
   float: left;
   padding: 9px;
 }
-
-col-8 {
-  width: 75%;
+.btn {
+  color: white;
 }
 
 body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#tweet {
+  padding: 10px;
 }
 
 footer {

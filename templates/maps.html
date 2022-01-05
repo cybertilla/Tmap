@@ -68,9 +68,13 @@
                     window.alert("No results found");
                 }
             })
-            .catch((e) => window.alert("We could not find the counrty you were looking for, try again."));
-
-    }
+            .catch((e) => {
+                    $("#tweet").empty();
+                    $("#translated-text > p").empty();
+                    $("#tweet").append("<h3> We could not find the country you were looking for, try again. </h3>");
+            
+    });
+}
 
 
     function readAPI(newAddress) {
@@ -89,7 +93,7 @@
                     $("#tweet").empty();
                     $("#translated-text > p").empty();
                     $("#tweet").append(`
-                    <p id="tweet-to-translate">No trending tweets available at this location</p>`)
+                    <h3 id="tweet-to-translate">No trending tweets available at this location</h3>`)
                 }
             }
         }).done(function(result) {
@@ -97,9 +101,10 @@
             $("#tweet").empty();
             $("#translated-text > p").empty();
             $("#tweet").append(`
+            <h3 class="text-center">The trending tweet</h3>
             <p id="tweet-to-translate">${result[0].text}</p>
-            <a href="${result[0].url}">Read the tweet here!</a>
-            <button id="translate" type="button" onclick="myFunction()">Translate to English</button>
+            <a class="btn btn-info" href="${result[0].url}">Read the tweet here!</a>
+            <button class="btn btn-success" id="translate" type="button" onclick="myFunction()">Translate to English</button>
             `)
         });
     }
@@ -108,7 +113,7 @@
         var data = {
             tweetText: text
         };
-        console.log(data);
+        
         $.ajax({
             method: "POST",
             url: 'http://127.0.0.1:5000/translated/',
@@ -175,13 +180,15 @@
 
 <div class="row">
     <div class="col-8">
-        <h3>Check out this trend map</h3>
+        <h3 class="text-center">The world's twitter trends map</h3>
         <div id="map"> </div>
     </div>
     <div class="col-4">
         <div id="tweet-box">
-            <h3>The trending tweet:</h3>
-            <div id="tweet"></div>
+
+            <div id="tweet">
+                <p>No country selected</p>
+            </div>
             <div id="translate-button">
             </div>
             <div id="translated-text"></div>
