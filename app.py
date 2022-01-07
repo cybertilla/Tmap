@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request, url_for, render_template
 import storage as storage
 import json
 import config
+import urllib.parse
 
 
 import twitterApi
@@ -50,15 +51,17 @@ def translate():
 
 @app.route('/tweets/', methods=['GET'])
 def display_map1():
-    name = request.get_json()
-    print("name: ", name)
+    data = request.get_json['adress']
+    print(request.get_data.body)
+    #name = urllib.request.body()
+    print("name: ", data)
 
-    country = twitterApi.getPlace(name)
+    country = twitterApi.getPlace(data)
     list = twitterApi.getTheTrendingTweets(country)
     list1 = twitterApi.getTextToTranslate(list)
 
     tweet = json.dumps(list1, indent=4, sort_keys=True, default=str, ensure_ascii=False)
-
+    
     return tweet
 
             

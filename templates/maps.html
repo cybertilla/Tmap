@@ -81,14 +81,18 @@
         var data = {
             adress: newAddress
         }
+        consol.log(data.body)
         $.ajax({
             method: "GET",
             url: 'http://127.0.0.1:5000/tweets/',
-            contentType: "application/json",
             dataType: 'json',
-            data: JSON.parse(data),
+            contentType: "application/json",
+            //data: JSON.parse(data),
             data: JSON.stringify(data),
             headers: {
+                "Accept": "application/json"
+            },
+            body: {
                 "Accept": "application/json"
             },
             statusCode: {

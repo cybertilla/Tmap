@@ -16,6 +16,7 @@ trending_now = trend_world.json()
 
 
 def getPlace(name):
+    print("i getPlace ", name)
     if(name == 'USA'):
         name = 'United States'
     if(name == 'South Korea' or name == 'North Korea'):
