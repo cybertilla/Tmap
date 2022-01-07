@@ -48,8 +48,10 @@ def translate():
     #print(y)
     return y
 
-@app.route('/tweets/<name>', methods=['GET'])
-def display_map1(name):
+@app.route('/tweets/', methods=['GET'])
+def display_map1():
+    name = request.get_json()
+    print("name: ", name)
 
     country = twitterApi.getPlace(name)
     list = twitterApi.getTheTrendingTweets(country)
