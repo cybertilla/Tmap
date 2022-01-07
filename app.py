@@ -51,6 +51,7 @@ def translate():
 @app.route('/tweets/<name>', methods=['GET'])
 def display_map1(name):
 
+
     country = twitterApi.getPlace(name)
     list = twitterApi.getTheTrendingTweets(country)
     list1 = twitterApi.getTextToTranslate(list)
