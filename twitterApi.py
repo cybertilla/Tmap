@@ -69,20 +69,19 @@ def getTextToTranslate(list1):
 
 
     for res in resource_url['statuses']:
-        #text = res['text']
-        #fav_point = res['favorite_count']
+        
         res['truncated'] = 'False'
         for r in res['entities']['urls']:
-            #url = r['url']
+            
             if(res['favorite_count'] > likes):
             
                 list2.clear()
                 text = re.sub(r'http\S+', '', res['text'])
                 likes = res['favorite_count']
                 url = r['url']
-                #print(list1[0].get('name',' '))                
+                             
                 x2 = {
-                    "keyName": list1[0].get('name',' '),
+                    "keyWord": list1[0].get('name',' '),
                     "text": text,
                     "url": url,
                     "likes": likes
