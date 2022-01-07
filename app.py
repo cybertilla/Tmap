@@ -2,7 +2,6 @@
 
 import requests
 from flask import Flask, jsonify, request, url_for, render_template
-import storage as storage
 import json
 import config
 
