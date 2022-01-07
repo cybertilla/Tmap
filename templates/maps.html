@@ -102,6 +102,8 @@
             $("#translated-text > p").empty();
             $("#tweet").append(`
             <h3 class="text-center">The trending tweet</h3>
+            <p class="text-under">The trending word: </p>
+            <p id="trending-word">${result[0].keyName}</p>
             <p id="tweet-to-translate">${result[0].text}</p>
             <a class="btn btn-info" href="${result[0].url}">Read the tweet here!</a>
             <button class="btn btn-success" id="translate" type="button" onclick="myFunction()">Translate to English</button>

@@ -80,8 +80,9 @@ def getTextToTranslate(list1):
                 text = re.sub(r'http\S+', '', res['text'])
                 likes = res['favorite_count']
                 url = r['url']
-                                
+                #print(list1[0].get('name',' '))                
                 x2 = {
+                    "keyName": list1[0].get('name',' '),
                     "text": text,
                     "url": url,
                     "likes": likes

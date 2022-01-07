@@ -25,8 +25,8 @@ def homepage():
     return render_template("index.html")
 
 
-@app.route('/places', methods=['GET'])
-@app.route('/places/', methods=['GET'])
+@app.route('/map', methods=['GET'])
+@app.route('/map/', methods=['GET'])
 
 def display_map():
     '''
@@ -48,8 +48,7 @@ def translate():
     return y
 
 @app.route('/tweets/<name>', methods=['GET'])
-def display_map1(name):
-
+def display_tweet(name):
 
     country = twitterApi.getPlace(name)
     list = twitterApi.getTheTrendingTweets(country)
