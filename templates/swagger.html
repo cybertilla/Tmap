@@ -1,353 +1,173 @@
 {% extends "base.html" %}
 {% block content %}
-  <head>
-    <style type="text/css">
-      body {
-      	font-family: Trebuchet MS, sans-serif;
-      	font-size: 15px;
-      	color: #444;
-      	margin-right: 24px;
-        padding: 15px;
-      }
-      
-      h1	{
-      	font-size: 25px;
-      }
-      h2	{
-      	font-size: 20px;
-      }
-      h3	{
-      	font-size: 16px;
-      	font-weight: bold;
-      }
-      hr	{
-      	height: 1px;
-      	border: 0;
-      	color: #ddd;
-      	background-color: #ddd;
-      }
-      
-      .app-desc {
-        clear: both;
-        margin-left: 20px;
-      }
-      .param-name {
-        width: 100%;
-      }
-      .license-info {
-        margin-left: 20px;
-      }
-      
-      .license-url {
-        margin-left: 20px;
-      }
-      
-      .model {
-        margin: 0 0 0px 20px;
-      }
-      
-      .method {
-        margin-left: 20px;
-      }
-      
-      .method-notes	{
-      	margin: 10px 0 20px 0;
-      	font-size: 90%;
-      	color: #555;
-      }
-      
-      pre {
-        padding: 10px;
-        margin-bottom: 2px;
-      }
-      
-      .http-method {
-       text-transform: uppercase;
-      }
-      
-      pre.get {
-        background-color: #0f6ab4;
-      }
-      
-      pre.post {
-        background-color: #10a54a;
-      }
-      
-      pre.put {
-        background-color: #c5862b;
-      }
-      
-      pre.delete {
-        background-color: #a41e22;
-      }
-      
-      .huge	{
-      	color: #fff;
-      }
-      
-      pre.example {
-        background-color: #f3f3f3;
-        padding: 10px;
-        border: 1px solid #ddd;
-      }
-      
-      code {
-        white-space: pre;
-      }
-      
-      .nickname {
-        font-weight: bold;
-      }
-      
-      .method-path {
-        font-size: 1.5em;
-        background-color: #0f6ab4;
-      }
-      
-      .up {
-        float:right;
-      }
-      
-      .parameter {
-        width: 500px;
-      }
-      
-      .param {
-        width: 500px;
-        padding: 10px 0 0 20px;
-        font-weight: bold;
-      }
-      
-      .param-desc {
-        width: 700px;
-        padding: 0 0 0 20px;
-        color: #777;
-      }
-      
-      .param-type {
-        font-style: italic;
-      }
-      
-      .param-enum-header {
-      width: 700px;
-      padding: 0 0 0 60px;
-      color: #777;
-      font-weight: bold;
-      }
-      
-      .param-enum {
-      width: 700px;
-      padding: 0 0 0 80px;
-      color: #777;
-      font-style: italic;
-      }
-      
-      .field-label {
-        padding: 0;
-        margin: 0;
-        clear: both;
-      }
-      
-      .field-items	{
-      	padding: 0 0 15px 0;
-      	margin-bottom: 15px;
-      }
-      
-      .return-type {
-        clear: both;
-        padding-bottom: 10px;
-      }
-      
-      .param-header {
-        font-weight: bold;
-      }
-      
-      .method-tags {
-        text-align: right;
-      }
-      
-      .method-tag {
-        background: none repeat scroll 0% 0% #24A600;
-        border-radius: 3px;
-        padding: 2px 10px;
-        margin: 2px;
-        color: #FFF;
-        display: inline-block;
-        text-decoration: none;
-      }
-    </style>
-  </head>
-  <body>
-  <h1>TweetMap</h1>
+<body>
+  <div class="container">
+    <h1>Twitter Trends Translator Map</h1>
     <div class="app-desc">Popular tweets and translation</div>
-    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
-    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
-    <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/MiuMiuMiuMiuMiu/TweetMap/1.0.0</div>
-    <div class="license-info">All rights reserved</div>
-    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
-  <h2>Access</h2>
-
-  <h2><a name="__Methods">Methods</a></h2>
-  [ Jump to <a href="#__Models">Models</a> ]
-
-  <h3>Table of Contents </h3>
-  <div class="method-summary"></div>
-  <h4><a href="#Default">Default</a></h4>
-  <ul>
-  <li><a href="#translateTextPost"><code><span class="http-method">post</span> /translate/{text}</code></a></li>
-  <li><a href="#tweetPlaceGet"><code><span class="http-method">get</span> /tweet/{place}</code></a></li>
-  </ul>
-
-  <h1><a name="Default">Default</a></h1>
-  <div class="method"><a name="translateTextPost"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /translate/{text}</code></pre></div>
-    <div class="method-summary">Translate text (<span class="nickname">translateTextPost</span>)</div>
-    <div class="method-notes">Translate text to different languages</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">text (required)</div>
+    <!--<div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+      <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+      <div class="app-desc">Version: 1.0.0</div>
+      <div class="app-desc">BasePath:/MiuMiuMiuMiuMiu/TweetMap/1.0.0</div>
+      <div class="license-info">All rights reserved</div>
+      <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>-->
+      <h2>Access</h2>
+      <hr>
+      <h2><a name="__Methods">Methods</a></h2>
+      [ Jump to <a href="#__Models">Models</a> ]
       
+      <h3>Table of Contents </h3>
+      <div class="method-summary"></div>
+      <h4><a href="#Default">Default</a></h4>
+      <ul>
+        <li><a href="#translateTextPost"><code><span class="http-method">post</span> /translate/{text}</code></a></li>
+        <li><a href="#tweetPlaceGet"><code><span class="http-method">get</span> /tweet/{place}</code></a></li>
+      </ul>
+      <hr>
+      <h1><a name="Default">Default</a></h1>
+      <div class="method"><a name="translateTextPost"></a>
+        <div class="method-path">
+          <a class="up" href="#__Methods">Up</a>
+          <pre class="post"><code class="huge"><span class="http-method">post</span> /translate/{text}</code></pre></div>
+          <div class="method-summary">Translate text (<span class="nickname">translateTextPost</span>)</div>
+          <div class="method-notes">Translate text to different languages</div>
+          
+          <h3 class="field-label">Path parameters</h3>
+          <div class="field-items">
+            <div class="param">text (required)</div>
+            
             <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Text of tweet </div>    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Request body</h3>
-    <div class="field-items">
-      <div class="param">body <a href="#Translate">Translate</a> (optional)</div>
-      
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+            
+            <h3 class="field-label">Consumes</h3>
+            This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+            <ul>
+              <li><code>application/json</code></li>
+            </ul>
+            
+            <h3 class="field-label">Request body</h3>
+            <div class="field-items">
+              <div class="param">body <a href="#Translate">Translate</a> (optional)</div>
+              <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+            </div>  <!-- field-items -->
+            
+            <h3 class="field-label">Return type</h3>
+            <div class="return-type">
+              <a href="#Translate">Translate</a>
+            </div>
+            
+            <!--Todo: process Response Object and its headers, schema, examples -->
+            
+            <h3 class="field-label">Example data</h3>
+            <div class="example-data-content-type">Content-Type: application/json</div>
+            <pre class="example"><code>{
+              "details" : "http://127.0.0.1:5000/translated/text",
+              "text" : "I confess that last night I cried. That Victor Jara and Allende came back to my memory, that I remembered the times when the coup ..."
+            }</code></pre>
+            
+            <h3 class="field-label">Produces</h3>
+            This API call produces the following media types according to the <span class="header">Accept</span> request header;
+            the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+            <ul>
+              <li><code>text/plain</code></li>
+            </ul>
+            
+            <h3 class="field-label">Responses</h3>
+            <h4 class="field-label">201</h4>
+            Text translated
+            <a href="#Translate">Translate</a>
+            <h4 class="field-label">202</h4>
+            Success
+            <a href="#Translate">Translate</a>
+          </div> <!-- method -->
+          <hr/>
+          <div class="method"><a name="tweetPlaceGet"></a>
+            <div class="method-path">
+              <a class="up" href="#__Methods">Up</a>
+              <pre class="get"><code class="huge"><span class="http-method">get</span> /tweet/{place}</code></pre></div>
+              <div class="method-summary">Retrives a tweet (<span class="nickname">tweetPlaceGet</span>)</div>
+              <div class="method-notes">Retrives a tweet from a place</div>
+              
+              <h3 class="field-label">Path parameters</h3>
+              <div class="field-items">
+                <div class="param">place (required)</div>
+                
+                <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of place </div>    </div>  <!-- field-items -->
+                
+                
+                
+                
+                
+                
+                <h3 class="field-label">Return type</h3>
+                <div class="return-type">
+                  <a href="#Place">Place</a>
+                  
+                </div>
+                
+                <!--Todo: process Response Object and its headers, schema, examples -->
+                
+                <h3 class="field-label">Example data</h3>
+                <div class="example-data-content-type">Content-Type: application/json</div>
+                <pre class="example"><code>{
+                  "topic" : "Chile",
+                  "details" : "http://127.0.0.1:5000/tweets/Venezuela",
+                  "text" : "Confieso que anoche lloré. Que Víctor Jara y Allende volvieron a mi memoria, que recordé los tiempos cuando el golp…",
+                  "url" : "https://t.co/0SsCFO5fAS",
+                  "likes" : 23686
+                }</code></pre>
+                
+                <h3 class="field-label">Produces</h3>
+                This API call produces the following media types according to the <span class="header">Accept</span> request header;
+                the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+                <ul>
+                  <li><code>application/json</code></li>
+                  <li><code>text/html</code></li>
+                </ul>
+                
+                <h3 class="field-label">Responses</h3>
+                <h4 class="field-label">200</h4>
+                Tweet retrieved
+                <a href="#Place">Place</a>
+                <h3 class="field-label">Example data</h3>
+                <div class="example-data-content-type">Content-Type: html</div>
+                <pre class="example"><code>[{&#x27;trends&#x27;: [{&#x27;name&#x27;: &#x27;#50GBdeFINETWORK&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%2350GBdeFINETWORK&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%2350GBdeFINETWORK&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;José Juan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Jos%C3%A9+Juan%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Jos%C3%A9+Juan%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Pablo Sierra&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Pablo+Sierra%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Pablo+Sierra%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Alcoyano&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Alcoyano&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Alcoyano&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Linares&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Linares&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Linares&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#CrisLu17D&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23CrisLu17D&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23CrisLu17D&#x27;, &#x27;tweet_volume&#x27;: 16504}, {&#x27;name&#x27;: &#x27;#NavidadFnac&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23NavidadFnac&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23NavidadFnac&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#APOYOROCIO17D&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23APOYOROCIO17D&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23APOYOROCIO17D&#x27;, &#x27;tweet_volume&#x27;: 10472}, {&#x27;name&#x27;: &#x27;The Witcher&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22The+Witcher%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22The+Witcher%22&#x27;, &#x27;tweet_volume&#x27;: 40210}, {&#x27;name&#x27;: &#x27;#KikoHEsBasura&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23KikoHEsBasura&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23KikoHEsBasura&#x27;, &#x27;tweet_volume&#x27;: 30191}, {&#x27;name&#x27;: &#x27;sunmi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;sunmi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;sunmi&#x27;, &#x27;tweet_volume&#x27;: 21407}, {&#x27;name&#x27;: &#x27;El Banco de España&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22El+Banco+de+Espa%C3%B1a%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22El+Banco+de+Espa%C3%B1a%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Unai Simón&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Unai+Sim%C3%B3n%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Unai+Sim%C3%B3n%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Rayo Majadahonda&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Rayo+Majadahonda%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Rayo+Majadahonda%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Guadiana&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Guadiana&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Guadiana&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ana Orantes&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ana+Orantes%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ana+Orantes%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Iñigo Martínez&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22I%C3%B1igo+Mart%C3%ADnez%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22I%C3%B1igo+Mart%C3%ADnez%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Calviño&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Calvi%C3%B1o&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Calvi%C3%B1o&#x27;, &#x27;tweet_volume&#x27;: 10139}, {&#x27;name&#x27;: &#x27;TSJA&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;TSJA&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;TSJA&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Linarejos&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Linarejos&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Linarejos&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Garamendi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Garamendi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Garamendi&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Gamergy&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Gamergy&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Gamergy&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Zaragoza&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Zaragoza&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Zaragoza&#x27;, &#x27;tweet_volume&#x27;: 19783}, {&#x27;name&#x27;: &#x27;Pater&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Pater&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Pater&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Alexa&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Alexa&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Alexa&#x27;, &#x27;tweet_volume&#x27;: 82140}, {&#x27;name&#x27;: &#x27;Cerro&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Cerro&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Cerro&#x27;, &#x27;tweet_volume&#x27;: 16923}, {&#x27;name&#x27;: &#x27;Valladolid&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Valladolid&#x27;, &#x27;prot_volume&#x27;: 82551}, {&#x27;name&#x27;: &#x27;Cavani&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Cavani&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Cavani&#x27;, &#x27;tweet_volume&#x27;: 18945}, {&#x27;name&#x27;: &#x27;Mirandés&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Mirand%C3%A9s&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Mirand%C3%A9s&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Mancha Real&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Mancha+Real%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Mancha+Real%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Secret Story&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Secret+Story%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Secret+Story%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Sábado 18&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22S%C3%A1bado+18%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22S%C3%A1bado+18%22&#x27;, &#x27;tweet_volume&#x27;: 15481}, {&#x27;name&#x27;: &#x27;Concierto de Navidad&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Concierto+de+Navidad%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Concierto+de+Navidad%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;North Shropshire&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22North+Shropshire%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22North+Shropshire%22&#x27;, &#x27;tweet_volume&#x27;: 128753}], &#x27;as_of&#x27;: &#x27;2021-12-17T14:30:00Z&#x27;, &#x27;created_at&#x27;: &#x27;2021-12-13T13:02:45Z&#x27;, &#x27;locations&#x27;: [{&#x27;name&#x27;: &#x27;Spain&#x27;, &#x27;woeid&#x27;: 23424950}]}]        PS C:\Users\linnb\Desktop\trendMapping\Tmap-1&gt; &amp; C:/Users/linnb/AppData/Local/Programs/Python/Python310/python.exe c:/Users/linnb/Desktop/trendMapping/Tmap-1/twitterApi.py[{&#x27;tweet_volume&#x27;: 128841, &#x27;name&#x27;: &#x27;North Shropshire&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22North+Shropshire%22&#x27;}]PS C:\Users\linnb\Desktop\trendMapping\Tmap-1&gt; &amp; C:/Users/linnb/AppData/Local/Programs/Python/Python310/python.exe c:/Users/linnb/Desktop/trendMapping/Tmap-1/twitterApi.py[{&#x27;tweet_volume&#x27;: 82489, &#x27;name&#x27;: &#x27;Elon Musk&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Elon+Musk%22&#x27;}]PS C:\Users\linnb\Desktop\trendMapping\Tmap-1&gt; &amp; C:/Users/linnb/AppData/Local/Programs/Python/Python310/python.exe c:/Users/linnb/Desktop/trendMapping/Tmap-1/twitterApi.py[{&#x27;trends&#x27;: [{&#x27;name&#x27;: &#x27;#Dolar17TL&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23Dolar17TL&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23Dolar17TL&#x27;, &#x27;tweet_volume&#x27;: 13134}, {&#x27;name&#x27;: &#x27;#bist100&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23bist100&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23bist100&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#TesekkurlerErdogan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23TesekkurlerErdogan&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23TesekkurlerErdogan&#x27;, &#x27;tweet_volume&#x27;: 16703}, {&#x27;name&#x27;: &#x27;#GRAMALTIN&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23GRAMALTIN&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23GRAMALTIN&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#HemenSeçim&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23HemenSe%C3%A7im&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23HemenSe%C3%A7im&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Borsa İstanbul&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Borsa+%C4%B0stanbul%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Borsa+%C4%B0stanbul%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Leyla Mecnun&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Leyla+Mecnun%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Leyla+Mecnun%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Sadettin Saran&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Sadettin+Saran%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Sadettin+Saran%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ekonomi Çöktü&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ekonomi+%C3%87%C3%B6kt%C3%BC%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ekonomi+%C3%87%C3%B6kt%C3%BC%22&#x27;, &#x27;tweet_volume&#x27;: 25061}, {&#x27;name&#x27;: &quot;LPG&#x27;ye&quot;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;LPG%27ye&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;LPG%27ye&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Motorine 1,14&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Motorine+1%2C14%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Motorine+1%2C14%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;NiceYaşlara AslıhanGüner&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22NiceYa%C5%9Flara+Asl%C4%B1hanG%C3%BCner%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22NiceYa%C5%9Flara+Asl%C4%B1hanG%C3%BCner%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Rıfat&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;R%C4%B1fat&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;R%C4%B1fat&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;merkez bankası&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22merkez+bankas%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22merkez+bankas%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: 51449}, {&#x27;name&#x27;: &#x27;Euro 20&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Euro+20%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Euro+20%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &quot;Gine&#x27;de&quot;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Gine%27de&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Gine%27de&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Muzaffer YANINDAYIZ&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Muzaffer+YANINDAYIZ%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Muzaffer+YANINDAYIZ%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;İktidarMuhalefet AFistiyoruz&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22%C4%B0ktidarMuhalefet+AFistiyoruz%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22%C4%B0ktidarMuhalefet+AFistiyoruz%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Volkan Demirel&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Volkan+Demirel%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Volkan+Demirel%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;hayat pahalı&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22hayat+pahal%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22hayat+pahal%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Berat Albayrak&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Berat+Albayrak%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Berat+Albayrak%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Papua Yeni Gine&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Papua+Yeni+Gine%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Papua+Yeni+Gine%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Reşit&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Re%C5%9Fit&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Re%C5%9Fit&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;17 Aralık&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%2217+Aral%C4%B1k%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%2217+Aral%C4%B1k%22&#x27;, &#x27;tweet_volume&#x27;: 32780}, {&#x27;name&#x27;: &#x27;Hisarcıklıoğlu&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Hisarc%C4%B1kl%C4%B1o%C4%9Flu&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Hisarc%C4%B1kl%C4%B1o%C4%9Flu&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Hedef 20.23&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Hedef+20.23%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Hedef+20.23%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;1 Euro&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%221+Euro%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%221+Euro%22&#x27;, &#x27;tweet_volume&#x27;: 44942}, {&#x27;name&#x27;: &#x27;Türkan Saylan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22T%C3%BCrkan+Saylan%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22T%C3%BCrkan+Saylan%22&#x27;, &#x27;tweet_volume&#x27;: 15941}, {&#x27;name&#x27;: &#x27;Piyasalar&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Piyasalar&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Piyasalar&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;altay bayındır&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22altay+bay%C4%B1nd%C4%B1r%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22altay+bay%C4%B1nd%C4%B1r%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Viop&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Viop&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Viop&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Türk Lirası&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22T%C3%BCrk+Liras%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22T%C3%BCrk+Liras%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: 25607}, {&#x27;name&#x27;: &#x27;Elon Musk&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Elon+Musk%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Elon+Musk%22&#x27;, &#x27;tweet_volume&#x27;: 82489}, {&#x27;name&#x27;: &#x27;Haftasonu&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Haftasonu&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Haftasonu&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Sermaye&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Sermaye&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Sermaye&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Fatih Karagümrük&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Fatih+Karag%C3%BCmr%C3%BCk%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Fatih+Karag%C3%BCmr%C3%BCk%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ferdi Kadıoğlu&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ferdi+Kad%C4%B1o%C4%9Flu%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ferdi+Kad%C4%B1o%C4%9Flu%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Dün 274&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22D%C3%BCn+274%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22D%C3%BCn+274%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Selvi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Selvi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Selvi&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Battık&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Batt%C4%B1k&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Batt%C4%B1k&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ali Babacan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ali+Babacan%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ali+Babacan%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Komando Tugayı&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Komando+Tugay%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Komando+Tugay%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#EYTliBekliyor&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23EYTliBekliyor&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23EYTliBekliyor&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#ilkdefachpdoğrusöylüyor&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23ilkdefachpdo%C4%9Frus%C3%B6yl%C3%BCyor&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23ilkdefachpdo%C4%9Frus%C3%B6yl%C3%BCyor&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#DahaAlmadanEridi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23DahaAlmadanEridi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23DahaAlmadanEridi&#x27;, &#x27;tweet_volume&#x27;: 19986}, {&#x27;name&#x27;: &#x27;#MilleteTeslimOlun&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23MilleteTeslimOlun&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23MilleteTeslimOlun&#x27;, &#x27;tweet_volume&#x27;: 44899}, {&#x27;name&#x27;: &#x27;#euro19TL&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23euro19TL&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23euro19TL&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#EmekliyeZam&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23EmekliyeZam&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23EmekliyeZam&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#xu100&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23xu100&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23xu100&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#USDT&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23USDT&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23USDT&#x27;, &#x27;tweet_volume&#x27;: 24302}], &#x27;as_of&#x27;: &#x27;2021-12-17T14:32:26Z&#x27;, &#x27;created_at&#x27;: &#x27;2021-12-16T13:55:08Z&#x27;, &#x27;locations&#x27;: [{&#x27;name&#x27;: &#x27;Turkey&#x27;, &#x27;woeid&#x27;: 23424969}]}]
+                </code></pre>
+              </div> <!-- method -->
+              <hr/>
+              
+              <h2><a name="__Models">Models</a></h2>
+              [ Jump to <a href="#__Methods">Methods</a> ]
+              
+              <h3>Table of Contents</h3>
+              <ol>
+                <li><a href="#Place"><code>Place</code></a></li>
+                <li><a href="#Translate"><code>Translate</code></a></li>
+              </ol>
+              
+              <div class="model">
+                <h3><a name="Place"><code>Place</code></a> <a class="up" href="#__Models">Up</a></h3>
+                
+                <div class="field-items">
+                  <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+                  <div class="param-desc"><span class="param-type">example: Confieso que anoche lloré. Que Víctor Jara y Allende volvieron a mi memoria, que recordé los tiempos cuando el golp…</span></div>
+                  <div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+                  <div class="param-desc"><span class="param-type">example: https://t.co/0SsCFO5fAS</span></div>
+                  <div class="param">likes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+                  <div class="param-desc"><span class="param-type">example: 23686</span></div>
+                  <div class="param">topic (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+                  <div class="param-desc"><span class="param-type">example: Chile</span></div>
+                  <div class="param">details (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
+                  <div class="param-desc"><span class="param-type">example: http://127.0.0.1:5000/tweets/Venezuela</span></div>
                 </div>  <!-- field-items -->
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#Translate">Translate</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "details" : "http://127.0.0.1:5000/translated/text",
-  "text" : "I confess that last night I cried. That Victor Jara and Allende came back to my memory, that I remembered the times when the coup ..."
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>text/plain</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">201</h4>
-    Text translated
-        <a href="#Translate">Translate</a>
-    <h4 class="field-label">202</h4>
-    Success
-        <a href="#Translate">Translate</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="tweetPlaceGet"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /tweet/{place}</code></pre></div>
-    <div class="method-summary">Retrives a tweet (<span class="nickname">tweetPlaceGet</span>)</div>
-    <div class="method-notes">Retrives a tweet from a place</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">place (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of place </div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#Place">Place</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "topic" : "Chile",
-  "details" : "http://127.0.0.1:5000/tweets/Venezuela",
-  "text" : "Confieso que anoche lloré. Que Víctor Jara y Allende volvieron a mi memoria, que recordé los tiempos cuando el golp…",
-  "url" : "https://t.co/0SsCFO5fAS",
-  "likes" : 23686
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>text/html</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Tweet retrieved
-        <a href="#Place">Place</a>
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: html</div>
-    <pre class="example"><code>[{&#x27;trends&#x27;: [{&#x27;name&#x27;: &#x27;#50GBdeFINETWORK&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%2350GBdeFINETWORK&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%2350GBdeFINETWORK&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;José Juan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Jos%C3%A9+Juan%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Jos%C3%A9+Juan%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Pablo Sierra&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Pablo+Sierra%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Pablo+Sierra%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Alcoyano&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Alcoyano&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Alcoyano&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Linares&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Linares&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Linares&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#CrisLu17D&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23CrisLu17D&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23CrisLu17D&#x27;, &#x27;tweet_volume&#x27;: 16504}, {&#x27;name&#x27;: &#x27;#NavidadFnac&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23NavidadFnac&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23NavidadFnac&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#APOYOROCIO17D&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23APOYOROCIO17D&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23APOYOROCIO17D&#x27;, &#x27;tweet_volume&#x27;: 10472}, {&#x27;name&#x27;: &#x27;The Witcher&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22The+Witcher%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22The+Witcher%22&#x27;, &#x27;tweet_volume&#x27;: 40210}, {&#x27;name&#x27;: &#x27;#KikoHEsBasura&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23KikoHEsBasura&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23KikoHEsBasura&#x27;, &#x27;tweet_volume&#x27;: 30191}, {&#x27;name&#x27;: &#x27;sunmi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;sunmi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;sunmi&#x27;, &#x27;tweet_volume&#x27;: 21407}, {&#x27;name&#x27;: &#x27;El Banco de España&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22El+Banco+de+Espa%C3%B1a%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22El+Banco+de+Espa%C3%B1a%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Unai Simón&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Unai+Sim%C3%B3n%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Unai+Sim%C3%B3n%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Rayo Majadahonda&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Rayo+Majadahonda%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Rayo+Majadahonda%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Guadiana&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Guadiana&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Guadiana&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ana Orantes&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ana+Orantes%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ana+Orantes%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Iñigo Martínez&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22I%C3%B1igo+Mart%C3%ADnez%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22I%C3%B1igo+Mart%C3%ADnez%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Calviño&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Calvi%C3%B1o&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Calvi%C3%B1o&#x27;, &#x27;tweet_volume&#x27;: 10139}, {&#x27;name&#x27;: &#x27;TSJA&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;TSJA&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;TSJA&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Linarejos&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Linarejos&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Linarejos&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Garamendi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Garamendi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Garamendi&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Gamergy&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Gamergy&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Gamergy&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Zaragoza&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Zaragoza&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Zaragoza&#x27;, &#x27;tweet_volume&#x27;: 19783}, {&#x27;name&#x27;: &#x27;Pater&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Pater&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Pater&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Alexa&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Alexa&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Alexa&#x27;, &#x27;tweet_volume&#x27;: 82140}, {&#x27;name&#x27;: &#x27;Cerro&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Cerro&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Cerro&#x27;, &#x27;tweet_volume&#x27;: 16923}, {&#x27;name&#x27;: &#x27;Valladolid&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Valladolid&#x27;, &#x27;prot_volume&#x27;: 82551}, {&#x27;name&#x27;: &#x27;Cavani&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Cavani&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Cavani&#x27;, &#x27;tweet_volume&#x27;: 18945}, {&#x27;name&#x27;: &#x27;Mirandés&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Mirand%C3%A9s&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Mirand%C3%A9s&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Mancha Real&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Mancha+Real%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Mancha+Real%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Secret Story&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Secret+Story%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Secret+Story%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Sábado 18&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22S%C3%A1bado+18%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22S%C3%A1bado+18%22&#x27;, &#x27;tweet_volume&#x27;: 15481}, {&#x27;name&#x27;: &#x27;Concierto de Navidad&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Concierto+de+Navidad%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Concierto+de+Navidad%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;North Shropshire&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22North+Shropshire%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22North+Shropshire%22&#x27;, &#x27;tweet_volume&#x27;: 128753}], &#x27;as_of&#x27;: &#x27;2021-12-17T14:30:00Z&#x27;, &#x27;created_at&#x27;: &#x27;2021-12-13T13:02:45Z&#x27;, &#x27;locations&#x27;: [{&#x27;name&#x27;: &#x27;Spain&#x27;, &#x27;woeid&#x27;: 23424950}]}]        PS C:\Users\linnb\Desktop\trendMapping\Tmap-1&gt; &amp; C:/Users/linnb/AppData/Local/Programs/Python/Python310/python.exe c:/Users/linnb/Desktop/trendMapping/Tmap-1/twitterApi.py[{&#x27;tweet_volume&#x27;: 128841, &#x27;name&#x27;: &#x27;North Shropshire&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22North+Shropshire%22&#x27;}]PS C:\Users\linnb\Desktop\trendMapping\Tmap-1&gt; &amp; C:/Users/linnb/AppData/Local/Programs/Python/Python310/python.exe c:/Users/linnb/Desktop/trendMapping/Tmap-1/twitterApi.py[{&#x27;tweet_volume&#x27;: 82489, &#x27;name&#x27;: &#x27;Elon Musk&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Elon+Musk%22&#x27;}]PS C:\Users\linnb\Desktop\trendMapping\Tmap-1&gt; &amp; C:/Users/linnb/AppData/Local/Programs/Python/Python310/python.exe c:/Users/linnb/Desktop/trendMapping/Tmap-1/twitterApi.py[{&#x27;trends&#x27;: [{&#x27;name&#x27;: &#x27;#Dolar17TL&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23Dolar17TL&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23Dolar17TL&#x27;, &#x27;tweet_volume&#x27;: 13134}, {&#x27;name&#x27;: &#x27;#bist100&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23bist100&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23bist100&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#TesekkurlerErdogan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23TesekkurlerErdogan&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23TesekkurlerErdogan&#x27;, &#x27;tweet_volume&#x27;: 16703}, {&#x27;name&#x27;: &#x27;#GRAMALTIN&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23GRAMALTIN&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23GRAMALTIN&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#HemenSeçim&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23HemenSe%C3%A7im&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23HemenSe%C3%A7im&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Borsa İstanbul&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Borsa+%C4%B0stanbul%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Borsa+%C4%B0stanbul%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Leyla Mecnun&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Leyla+Mecnun%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Leyla+Mecnun%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Sadettin Saran&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Sadettin+Saran%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Sadettin+Saran%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ekonomi Çöktü&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ekonomi+%C3%87%C3%B6kt%C3%BC%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ekonomi+%C3%87%C3%B6kt%C3%BC%22&#x27;, &#x27;tweet_volume&#x27;: 25061}, {&#x27;name&#x27;: &quot;LPG&#x27;ye&quot;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;LPG%27ye&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;LPG%27ye&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Motorine 1,14&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Motorine+1%2C14%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Motorine+1%2C14%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;NiceYaşlara AslıhanGüner&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22NiceYa%C5%9Flara+Asl%C4%B1hanG%C3%BCner%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22NiceYa%C5%9Flara+Asl%C4%B1hanG%C3%BCner%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Rıfat&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;R%C4%B1fat&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;R%C4%B1fat&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;merkez bankası&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22merkez+bankas%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22merkez+bankas%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: 51449}, {&#x27;name&#x27;: &#x27;Euro 20&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Euro+20%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Euro+20%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &quot;Gine&#x27;de&quot;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Gine%27de&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Gine%27de&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Muzaffer YANINDAYIZ&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Muzaffer+YANINDAYIZ%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Muzaffer+YANINDAYIZ%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;İktidarMuhalefet AFistiyoruz&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22%C4%B0ktidarMuhalefet+AFistiyoruz%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22%C4%B0ktidarMuhalefet+AFistiyoruz%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Volkan Demirel&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Volkan+Demirel%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Volkan+Demirel%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;hayat pahalı&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22hayat+pahal%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22hayat+pahal%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Berat Albayrak&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Berat+Albayrak%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Berat+Albayrak%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Papua Yeni Gine&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Papua+Yeni+Gine%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Papua+Yeni+Gine%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Reşit&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Re%C5%9Fit&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Re%C5%9Fit&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;17 Aralık&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%2217+Aral%C4%B1k%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%2217+Aral%C4%B1k%22&#x27;, &#x27;tweet_volume&#x27;: 32780}, {&#x27;name&#x27;: &#x27;Hisarcıklıoğlu&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Hisarc%C4%B1kl%C4%B1o%C4%9Flu&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Hisarc%C4%B1kl%C4%B1o%C4%9Flu&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Hedef 20.23&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Hedef+20.23%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Hedef+20.23%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;1 Euro&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%221+Euro%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%221+Euro%22&#x27;, &#x27;tweet_volume&#x27;: 44942}, {&#x27;name&#x27;: &#x27;Türkan Saylan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22T%C3%BCrkan+Saylan%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22T%C3%BCrkan+Saylan%22&#x27;, &#x27;tweet_volume&#x27;: 15941}, {&#x27;name&#x27;: &#x27;Piyasalar&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Piyasalar&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Piyasalar&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;altay bayındır&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22altay+bay%C4%B1nd%C4%B1r%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22altay+bay%C4%B1nd%C4%B1r%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Viop&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Viop&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Viop&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Türk Lirası&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22T%C3%BCrk+Liras%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22T%C3%BCrk+Liras%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: 25607}, {&#x27;name&#x27;: &#x27;Elon Musk&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Elon+Musk%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Elon+Musk%22&#x27;, &#x27;tweet_volume&#x27;: 82489}, {&#x27;name&#x27;: &#x27;Haftasonu&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Haftasonu&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Haftasonu&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Sermaye&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Sermaye&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Sermaye&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Fatih Karagümrük&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Fatih+Karag%C3%BCmr%C3%BCk%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Fatih+Karag%C3%BCmr%C3%BCk%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ferdi Kadıoğlu&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ferdi+Kad%C4%B1o%C4%9Flu%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ferdi+Kad%C4%B1o%C4%9Flu%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Dün 274&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22D%C3%BCn+274%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22D%C3%BCn+274%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Selvi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Selvi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Selvi&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Battık&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;Batt%C4%B1k&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;Batt%C4%B1k&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Ali Babacan&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Ali+Babacan%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Ali+Babacan%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;Komando Tugayı&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%22Komando+Tugay%C4%B1%22&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%22Komando+Tugay%C4%B1%22&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#EYTliBekliyor&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23EYTliBekliyor&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23EYTliBekliyor&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#ilkdefachpdoğrusöylüyor&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23ilkdefachpdo%C4%9Frus%C3%B6yl%C3%BCyor&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23ilkdefachpdo%C4%9Frus%C3%B6yl%C3%BCyor&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#DahaAlmadanEridi&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23DahaAlmadanEridi&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23DahaAlmadanEridi&#x27;, &#x27;tweet_volume&#x27;: 19986}, {&#x27;name&#x27;: &#x27;#MilleteTeslimOlun&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23MilleteTeslimOlun&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23MilleteTeslimOlun&#x27;, &#x27;tweet_volume&#x27;: 44899}, {&#x27;name&#x27;: &#x27;#euro19TL&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23euro19TL&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23euro19TL&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#EmekliyeZam&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23EmekliyeZam&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23EmekliyeZam&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#xu100&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23xu100&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23xu100&#x27;, &#x27;tweet_volume&#x27;: None}, {&#x27;name&#x27;: &#x27;#USDT&#x27;, &#x27;url&#x27;: &#x27;http://twitter.com/search?q&#x3D;%23USDT&#x27;, &#x27;promoted_content&#x27;: None, &#x27;query&#x27;: &#x27;%23USDT&#x27;, &#x27;tweet_volume&#x27;: 24302}], &#x27;as_of&#x27;: &#x27;2021-12-17T14:32:26Z&#x27;, &#x27;created_at&#x27;: &#x27;2021-12-16T13:55:08Z&#x27;, &#x27;locations&#x27;: [{&#x27;name&#x27;: &#x27;Turkey&#x27;, &#x27;woeid&#x27;: 23424969}]}]
-</code></pre>
-  </div> <!-- method -->
-  <hr/>
-
-  <h2><a name="__Models">Models</a></h2>
-  [ Jump to <a href="#__Methods">Methods</a> ]
-
-  <h3>Table of Contents</h3>
-  <ol>
-    <li><a href="#Place"><code>Place</code></a></li>
-    <li><a href="#Translate"><code>Translate</code></a></li>
-  </ol>
-
-  <div class="model">
-    <h3><a name="Place"><code>Place</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Confieso que anoche lloré. Que Víctor Jara y Allende volvieron a mi memoria, que recordé los tiempos cuando el golp…</span></div>
-<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: https://t.co/0SsCFO5fAS</span></div>
-<div class="param">likes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 23686</span></div>
-<div class="param">topic (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Chile</span></div>
-<div class="param">details (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
-          <div class="param-desc"><span class="param-type">example: http://127.0.0.1:5000/tweets/Venezuela</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="Translate"><code>Translate</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: I confess that last night I cried. That Victor Jara and Allende came back to my memory, that I remembered the times when the coup ...</span></div>
-<div class="param">details (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
-          <div class="param-desc"><span class="param-type">example: http://127.0.0.1:5000/translated/text</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  {%endblock%}
+              </div>
+              <div class="model">
+                <h3><a name="Translate"><code>Translate</code></a> <a class="up" href="#__Models">Up</a></h3>
+                
+                <div class="field-items">
+                  <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+                  <div class="param-desc"><span class="param-type">example: I confess that last night I cried. That Victor Jara and Allende came back to my memory, that I remembered the times when the coup ...</span></div>
+                  <div class="param">details (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
+                  <div class="param-desc"><span class="param-type">example: http://127.0.0.1:5000/translated/text</span></div>
+                </div>  <!-- field-items -->
+              </div>
+            </div>
+            {%endblock%}

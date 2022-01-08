@@ -4,11 +4,9 @@ import requests
 from flask import Flask, jsonify, request, url_for, render_template
 import json
 import config
-
-
 import twitterApi
 import translateAPI
-#import relevant objects
+
 
 my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
@@ -17,7 +15,7 @@ trending_now = trend_world.json()
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def homepage():
     '''
     Homepage
