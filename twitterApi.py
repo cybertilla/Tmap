@@ -81,7 +81,7 @@ def getTextToTranslate(list1):
                 url = r['url']
                              
                 x2 = {
-                    "keyWord": list1[0].get('name',' '),
+                    "topic": list1[0].get('name',' '),
                     "text": text,
                     "url": url,
                     "likes": likes

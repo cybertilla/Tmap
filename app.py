@@ -51,7 +51,7 @@ def display_tweet(name):
     country = twitterApi.getPlace(name)
     list = twitterApi.getTheTrendingTweets(country)
     list1 = twitterApi.getTextToTranslate(list)
-
+    print(list1)
     tweet = json.dumps(list1, indent=4, sort_keys=True, default=str, ensure_ascii=False)
 
     return tweet
