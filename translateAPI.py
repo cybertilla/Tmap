@@ -5,7 +5,7 @@ import urllib.parse
 
 '''
 Gets a text to translate to english
-Makes a GET request and returns
+Makes a GET request to Cloud Translate API and returns the translated text
 '''
 def translate(text):
     text = urllib.parse.quote(text)
