@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 
 import requests
 from flask import Flask, jsonify, request, url_for, render_template
@@ -6,11 +6,6 @@ import json
 import config
 import twitterApi
 import translateAPI
-
-
-my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
-trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
-trending_now = trend_world.json()
 
 app = Flask(__name__)
 
@@ -37,21 +32,17 @@ def display_map():
 
 @app.route('/translated/', methods=['POST'])
 def translate():
-    #print(request.data)
     text = request.json["tweetText"]
-    #print(text)
     y = translateAPI.translate(text)
     y = y.decode()
-    #print(y)
     return y
 
-@app.route('/tweets/<name>', methods=['GET'])
-def display_tweet(name):
+@app.route('/tweets/<place>', methods=['GET'])
+def display_tweet(place):
 
-    country = twitterApi.getPlace(name)
+    country = twitterApi.getPlace(place)
     list = twitterApi.getTheTrendingTweets(country)
-    list1 = twitterApi.getTextToTranslate(list)
-    print(list1)
+    list1 = twitterApi.getTextFromTrending(list)
     tweet = json.dumps(list1, indent=4, sort_keys=True, default=str, ensure_ascii=False)
 
     return tweet

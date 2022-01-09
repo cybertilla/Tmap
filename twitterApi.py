@@ -9,12 +9,15 @@ my_headers = {'Authorization' : 'Bearer ' + config.twitterBearerToken}
 trend_world = requests.get('https://api.twitter.com/1.1/trends/available.json', headers=my_headers)
 trending_now = trend_world.json()
 
-#Does not return a list YET
-#def country_list():
-#    for trend in trending_now:
-#        print(trend['name'], trend['country'])
+'''Returns a list of countries'''
+def country_list():
+    for trend in trending_now:
+        print(trend['name'], trend['country'])
 
 
+'''Turns a name(String) of a country to an ID
+    Makes a GET request from Twitter API of the trending topics from the chosen country
+'''
 def getPlace(name):
     if(name == 'USA'):
         name = 'United States'
@@ -24,7 +27,7 @@ def getPlace(name):
         name = 'Saudi Arabia'
     for trend in trending_now:
         
-        if(trend['name'] == name): # we switch this to a paramiter från the user input
+        if(trend['name'] == name): 
             woeid = trend['woeid']
             trend_place = requests.get('https://api.twitter.com/1.1/trends/place.json?id='+ str(woeid) , headers=my_headers)
             trend_place = trend_place.json()
@@ -33,7 +36,7 @@ def getPlace(name):
     return trend_place.json()
 
 
-#plocka ut name, url, välja ut det som har mest tweet volume.
+'''Gets the list of the trends, takes the one that has the highest number of likes and returns a list of name, tweet_volume and the url'''
 
 def getTheTrendingTweets(trend_place):
     list1 = []
@@ -59,7 +62,9 @@ def getTheTrendingTweets(trend_place):
     return list1
 
 
-def getTextToTranslate(list1):
+'''Gets a list, makes a GET request to Twitter API to search for tweets of the trending topic, takes the tweet with the highest likes and 
+   return a list with topic, text,url and likes'''
+def getTextFromTrending(list1):
 
     likes = 0
     list2 = []
@@ -91,4 +96,4 @@ def getTextToTranslate(list1):
 
     return list2
 
-#country_list()
+

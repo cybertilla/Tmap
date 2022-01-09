@@ -3,6 +3,10 @@ import config
 import json
 import urllib.parse
 
+'''
+Gets a text to translate to english
+Makes a GET request and returns
+'''
 def translate(text):
     text = urllib.parse.quote(text)
     query = "https://translation.googleapis.com/language/translate/v2?key=" + config.googleKeyTranslate + "&q=" + text + "&target=en"
