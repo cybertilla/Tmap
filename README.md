@@ -11,21 +11,21 @@ The keys that you will need are:
 * Google Maps API key(containg access to Geocoding API, Maps JavaScript)
 * Google Cloud Translation key. 
 
-**Instructions**
+# Instructions
 
 Make sure that ​​python --version returns version 3.8.0 or higher
 Activate the virtual env with . myenv/bin/activate
 Install the right version of Flask with pip install -r requirements.txt
 
-# Windows
+## Windows
 Start Flask with FLASK_APP=src/app.py , if you use PowerShell run $env:FLASK_APP = "src/app.py"
 
-# Mac/Linux
+## Mac/Linux
 Activate the virtual env with . myenv/bin/activate
 
 Start Flask with FLASK_APP=app.py
 
-# All OS
+## All OS
 Start Flask with flask run
 
 Open the address from the console outsput and explore T-map!
