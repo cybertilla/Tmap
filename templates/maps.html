@@ -81,7 +81,7 @@
     function readAPI(newAddress) {
         $.ajax({
             method: "GET",
-            url: 'http://127.0.0.1:5000/tweets/' + newAddress,
+            url: 'http://127.0.0.1:5000/tweet/' + newAddress,
             headers: {
                 "Accept": "application/json"
             },
@@ -125,7 +125,7 @@
         
         $.ajax({
             method: "POST",
-            url: 'http://127.0.0.1:5000/translated/',
+            url: 'http://127.0.0.1:5000/translate/',
             data: JSON.stringify(data),
             contentType: "application/json",
             dataType: 'json',

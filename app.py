@@ -29,7 +29,7 @@ def display_map():
     return render_template("maps.html", key=key, geo=geo)
 
 
-@app.route('/translated/', methods=['POST'])
+@app.route('/translate/', methods=['POST'])
 def translate():
     '''
     Takes a text via POST request and translates it in the function translate(text).
@@ -41,7 +41,7 @@ def translate():
     return translatedText
     
 
-@app.route('/tweets/<place>', methods=['GET'])
+@app.route('/tweet/<place>', methods=['GET'])
 def display_tweet(place):
     '''
     Takes a place and returns its most popular topic Tweet with most likes.
