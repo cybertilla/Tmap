@@ -17,6 +17,7 @@ The keys that you will need are:
 1. Make sure that ​​python --version returns version 3.8.0 or higher
 2. Activate the virtual env with . myenv/Scripts/activate 
 If you get an error type: python -m venv myenv and start over with instruction no 2. 
+If you get an error that Scrips are disabled in the system, open Windows PowerShell and make this command Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine . Answer Y (Yes) to the question and start over on instruction no 2.
 3. Make sure that you are in the right folder(the one closest to the code) and install the right version of Flask and requests with pip install -r requirements.txt
 4. Start Flask with set FLASK_APP=src/app.py , if you use PowerShell run $env:FLASK_APP = "src/app.py"
 
