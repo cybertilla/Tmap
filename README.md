@@ -17,14 +17,14 @@ The keys that you will need are:
 1. Make sure that ​​python --version returns version 3.8.0 or higher
 2. Activate the virtual env with . myenv/Scripts/activate 
 If you get an error type: python -m venv myenv and start over with instruction no 2. 
-3. Make sure that you are in the right folder(Tmap-main) and install the right version of Flask and requests with pip install -r requirements.txt
+3. Make sure that you are in the right folder(the one closest to the code) and install the right version of Flask and requests with pip install -r requirements.txt
 4. Start Flask with set FLASK_APP=src/app.py , if you use PowerShell run $env:FLASK_APP = "src/app.py"
 
 ## Mac/Linux
 1. Make sure that ​​python --version returns version 3.8.0 or higher
 2. Create an virtual enviroment with python3 -m venv myenv
 3. Activate the virtual env with . myenv/bin/activate 
-4. Make sure that you are in the right folder(Tmap-main) and install the right version of Flask and requests with pip install -r requirements.txt
+4. Make sure that you are in the right folder(the one closest to the code) and install the right version of Flask and requests with pip install -r requirements.txt
 5. Start Flask with export FLASK_APP=app.py , if you get an error you may have to add Tmap-main folder to you path. If so do this command export PATH=”$(pwd):$PATH”
 
 ## All OS
