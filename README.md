@@ -5,11 +5,13 @@ and translates relative tweets into English
 
 University project for Malmö University HT2021
 
-In this project you'll need an file called "config.py" that contain all the API keys that you'll need. If you don't have those the application will not work!
+In order for this app to run, you'll need to create an file called "config.py" that contains all the API keys required. If you don't have those the application will not work!
 The keys that you will need are:
 * Twitter API key(Bearer Token),
 * Google Maps API key(containg access to Geocoding API, Maps JavaScript)
-* Google Cloud Translation key. 
+* Google Cloud Translation key.
+
+You'll need to apply to each of them, be aware that the process migh take several days.
 
 # Instructions
 
